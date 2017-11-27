@@ -36,7 +36,8 @@ public class HomeController {
         if(userRepo.login(user.getUsername(), user.getPassword()) != null) {
             User u = userRepo.login(user.getUsername(), user.getPassword());
             if(u.isAdmin() == true) {
-                return "admin";
+
+                return "adminemployee";
             }
 
             return "hjem";

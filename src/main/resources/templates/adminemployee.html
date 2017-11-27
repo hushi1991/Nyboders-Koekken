@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Index</title>
+</head>
+<body>
+
+<h1>Hej admin</h1>
+
+<table align="center">
+    <tr>
+        <td>Medarbejdere</td>
+    </tr>
+    <tr th:each="employee: ${e}">
+        <td th:text="${employee.id}"/>
+        <td th:text="${employee.name}"/>
+        <td th:text="${employee.totalHours}"/>
+
+    </tr>
+</table>
+
+</body>
+</html>
