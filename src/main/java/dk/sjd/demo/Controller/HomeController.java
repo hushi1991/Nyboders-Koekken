@@ -1,9 +1,8 @@
 package dk.sjd.demo.Controller;
 
-import dk.sjd.demo.Model.Entities.Customer;
 import dk.sjd.demo.Model.Entities.Employee;
+import dk.sjd.demo.Model.Entities.Reservation;
 import dk.sjd.demo.Model.Entities.User;
-import dk.sjd.demo.Model.Repositories.ICrudRepository;
 import dk.sjd.demo.Model.Repositories.IUserRepository;
 import dk.sjd.demo.Model.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ public class HomeController {
 
     ArrayList<User> users = new ArrayList<>();
     ArrayList<Employee> employees = new ArrayList<>();
-    ArrayList<Customer> customers = new ArrayList<>();
+    ArrayList<Reservation> customers = new ArrayList<>();
 
     @Autowired
     IUserRepository userRepo = new UserRepository();
