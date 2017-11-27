@@ -12,6 +12,9 @@ public class Shift {
     private Time shiftEnd;
     private int hours;
 
+    public Shift() {
+    }
+
     public Shift(int id, String name, Date date, Time shiftStart, Time shiftEnd, int hours) {
         this.id = id;
         this.name = name;
