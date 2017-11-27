@@ -19,7 +19,7 @@ public class HomeController {
 
     ArrayList<User> users = new ArrayList<>();
     ArrayList<Employee> employees = new ArrayList<>();
-    ArrayList<Reservation> customers = new ArrayList<>();
+    ArrayList<Reservation> reservation = new ArrayList<>();
 
     @Autowired
     IUserRepository userRepo = new UserRepository();
