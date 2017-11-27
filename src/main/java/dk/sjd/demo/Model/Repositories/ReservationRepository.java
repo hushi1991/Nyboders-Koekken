@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 
 @Repository
-public class ReservationRepository implements ICrudRepository {
+public class ReservationRepository implements IReservationRepository {
 
     @Autowired
     private JdbcTemplate jdbc;
@@ -28,6 +28,10 @@ public class ReservationRepository implements ICrudRepository {
         return reservation;
     }
 
+
+    public void create(Reservation reservation){
+        jdbc.update("INSERT INTO reservation VALUES ('" + reservation.getName() + "') + ('" + reservation.getPhone() + "') + ('" + reservation.getGuest() + "') + ('" + reservation.getDate() + "') ('" + reservation.getRequest() + "') ");
+    }
 
 }
 
