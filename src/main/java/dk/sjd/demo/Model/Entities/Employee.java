@@ -6,6 +6,9 @@ public class Employee {
     private String name;
     private int totalHours;
 
+    public Employee() {
+    }
+
     public Employee(int id, String name, int totalHours) {
         this.id = id;
         this.name = name;

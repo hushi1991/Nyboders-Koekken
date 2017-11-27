@@ -3,6 +3,8 @@ package dk.sjd.demo.Controller;
 import dk.sjd.demo.Model.Entities.Employee;
 import dk.sjd.demo.Model.Entities.Reservation;
 import dk.sjd.demo.Model.Entities.User;
+import dk.sjd.demo.Model.Repositories.EmployeeRepository;
+import dk.sjd.demo.Model.Repositories.IEmployeeRepository;
 import dk.sjd.demo.Model.Repositories.IUserRepository;
 import dk.sjd.demo.Model.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class HomeController {
     @Autowired
     IUserRepository userRepo = new UserRepository();
 
+    @Autowired
+    IEmployeeRepository employRepo = new EmployeeRepository();
+
     @RequestMapping(value = {"/login","","/","index"}, method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("user", new User());
@@ -36,7 +41,9 @@ public class HomeController {
         if(userRepo.login(user.getUsername(), user.getPassword()) != null) {
             User u = userRepo.login(user.getUsername(), user.getPassword());
             if(u.isAdmin() == true) {
-                return "admin";
+                employees = employRepo.readAll();
+                model.addAttribute("e", employees);
+                return "adminemployee";
             }
 
             return "hjem";
