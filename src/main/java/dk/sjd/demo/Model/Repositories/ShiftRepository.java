@@ -30,7 +30,7 @@ public class ShiftRepository implements IShiftRepository {
 
     @Override
     public ArrayList<Shift> read(String name) {
-        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM shifts WHERE name =" + name + "");
+        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM shifts WHERE name ='" + name + "'");
         ArrayList<Shift> shifts = new ArrayList<>();
 
         while(sqlRowSet.next()) {

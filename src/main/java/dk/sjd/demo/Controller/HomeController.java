@@ -37,7 +37,6 @@ public class HomeController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@ModelAttribute User user, Model model) {
-
         if(userRepo.login(user.getUsername(), user.getPassword()) != null) {
             User u = userRepo.login(user.getUsername(), user.getPassword());
             if(u.isAdmin() == true) {
@@ -45,10 +44,8 @@ public class HomeController {
                 model.addAttribute("e", employees);
                 return "adminemployee";
             }
-
             return "hjem";
         }
-
         return "login";
     }
 
