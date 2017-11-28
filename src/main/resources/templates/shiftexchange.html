@@ -11,28 +11,16 @@
 </head>
 
 <body>
-
     <h1> Vagtbytte</h1>
 
-    <select>
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="opel">Opel</option>
+    <form   th:action="@{/update}" method="post" th:object="${us}">
+        <select>
+            <input type="text" th:field="*{studentId}" />
+            <input type="text" th:field="*{studentId}" />
+        <option type="text" th:field="{name}" value="na">Opel</option>
         <option value="audi">Audi</option>
+
     </select>
-
-    
-    <!--
-    <div class="dropdown">
-        <button class="dropbtn">Vælg medarbejder</button>
-        <div class="dropdown-content">
-            <a href="https://www.google.dk/">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-        </div>
-    </div>
-
-    -->
-
+    </form>
 </body>
 </html>
