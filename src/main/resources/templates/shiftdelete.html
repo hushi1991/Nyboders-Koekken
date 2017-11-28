@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Delete Vagt</title>
+    <link rel="stylesheet" type="text/css"
+          href="../../static/styles.css"
+          th:href="@{styles.css}"/>
+</head>
+<body>
+<h1>Delete Vagt</h1>
+
+<form th:action="@{/shiftdelete}" method="post" th:object="${s}"> <!-- movie = @ModelAttribute -->
+    <input type="text" th:field="*{id}" th:text="${user_id}" readonly="readonly" />
+    <input type="text" th:field="*{name}" readonly="readonly" />
+    <input type="text" th:field="*{date}" readonly="readonly" />
+    <input type="text" th:field="*{shiftStart}" readonly="readonly" />
+    <input type="text" th:field="*{shiftEnd}" readonly="readonly" />
+    <input type="text" th:field="*{hours}" readonly="readonly" />
+
+
+    <input type="submit" value="Delete" />
+
+
+</form>
+
+</body>
+</html>
