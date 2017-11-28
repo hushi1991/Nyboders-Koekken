@@ -28,9 +28,9 @@ public class ReservationRepository implements IReservationRepository {
         return reservation;
     }
 
-
+// opdeles af plus eller komma?
     public void create(Reservation reservation){
-        jdbc.update("INSERT INTO reservation VALUES ('" + reservation.getName() + "') + ('" + reservation.getPhone() + "') + ('" + reservation.getGuest() + "') + ('" + reservation.getDate() + "') ('" + reservation.getRequest() + "') ");
+        jdbc.update("INSERT INTO reservation(name,phone,guest,date,request) VALUES ('" + reservation.getName() + "') + ('" + reservation.getPhone() + "') + ('" + reservation.getGuest() + "') + ('" + reservation.getDate() + "') ('" + reservation.getRequest() + "') ");
     }
 
 }
