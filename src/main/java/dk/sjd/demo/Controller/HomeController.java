@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jws.WebParam;
 import java.util.ArrayList;
 
 @Controller
@@ -56,9 +57,15 @@ public class HomeController {
         return "adminshift";
     }
 
+    /*@PostMapping("/adminshift")
+    public String admindelete(@RequestParam("id") int id, Model model) {
+        shiftrepo.delete(id);
+
+        return "/login";
+    }*/
+
     @RequestMapping(value = {"/shiftexchange"}, method = RequestMethod.GET)
-    public String shiftexchange()
-    {
+    public String shiftexchange(@RequestParam("id") int id, Model model) {
         return "shiftexchange";
     }
 
