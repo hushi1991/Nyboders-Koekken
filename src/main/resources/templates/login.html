@@ -2,10 +2,16 @@
 <html lang="en">
 <head>
 
+    <link rel="stylesheet"
+          href="C:\Users\Bruger\Documents\GitHub\Nyboders-Koekken\src\main\resources\static\style.css"
+          th:href="@{style.css}"/>
+
     <title>Login</title>
 
 </head>
 <body>
+<img src="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg" style="width:250px;height:200px;"/>
+
 
 <div>
     <form th:object="${user}" th:action="@{/login}" method="post">
