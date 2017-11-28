@@ -45,7 +45,9 @@ public class HomeController {
                 model.addAttribute("e", employees);
                 return "adminemployee";
             }
-            return "hjem";
+            employees = employRepo.readAll();
+            model.addAttribute("e", employees);
+            return "employee";
         }
         return "login";
     }
@@ -63,6 +65,13 @@ public class HomeController {
 
         return "/login";
     }*/
+
+    @GetMapping("/shift")
+    public String shift(@RequestParam("name") String name, Model model){
+        shifts = shiftrepo.read(name);
+        model.addAttribute("s", shifts);
+        return "shift";
+    }
 
     @RequestMapping(value = {"/shiftexchange"}, method = RequestMethod.GET)
     public String shiftexchange(@RequestParam("id") int id, Model model) {
