@@ -59,4 +59,10 @@ public class HomeController {
         return "adminshift";
     }
 
+    @RequestMapping(value = {"/shiftexchange"}, method = RequestMethod.GET)
+    public String shiftexchange()
+    {
+        return "shiftexchange";
+    }
+
 }
