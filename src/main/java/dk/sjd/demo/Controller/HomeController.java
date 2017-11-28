@@ -29,7 +29,7 @@ public class HomeController {
     @Autowired
     IShiftRepository shiftrepo = new ShiftRepository();
 
-    @RequestMapping(value = {"/login","","/","index"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("user", new User());
         return "login";
@@ -60,6 +60,13 @@ public class HomeController {
     public String shiftexchange()
     {
         return "shiftexchange";
+    }
+
+
+    @RequestMapping(value = {"","/","index"}, method = RequestMethod.GET)
+    public String index()
+    {
+        return "index";
     }
 
 }
