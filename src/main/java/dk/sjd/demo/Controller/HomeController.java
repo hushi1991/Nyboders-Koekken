@@ -75,7 +75,14 @@ public class HomeController {
 
     @RequestMapping(value = {"/shiftexchange"}, method = RequestMethod.GET)
     public String shiftexchange(@RequestParam("id") int id, Model model) {
+        model.addAttribute("shift", shiftrepo.readSpecific(id));
         return "shiftexchange";
+    }
+
+    @PostMapping("shiftexchange")
+    public String exchangeShift(@ModelAttribute Shift shift){
+        shiftrepo.updateShift(shift);
+        return "redirect:/";
     }
 
 

@@ -46,4 +46,25 @@ public class ShiftRepository implements IShiftRepository {
         jdbc.update("DELETE FROM shifts WHERE id=" + id + "");
     }
 
+    @Override
+    public Shift readSpecific(int id) {
+        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM shifts WHERE id =" + id + "");
+
+        if (sqlRowSet.next()){
+            return new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date"), sqlRowSet.getTime("shiftStart"), sqlRowSet.getTime("shiftEnd"), sqlRowSet.getInt("hours"));
+        }
+        return new Shift();
+    }
+
+    @Override
+    public Shift updateShift(Shift shift){
+
+        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM shifts WHERE id = '" +  shift.getId()  + "'");
+
+        if(sqlRowSet.next()) {
+            return new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date"), sqlRowSet.getTime("shiftStart"), sqlRowSet.getTime("shiftEnd"), sqlRowSet.getInt("hours"));
+        }
+        return null;
+    }
+
 }
