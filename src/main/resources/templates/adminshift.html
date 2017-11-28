@@ -27,11 +27,12 @@
         <td th:text="${shift.shiftEnd}"/>
         <td th:text="${shift.hours}"/>
         <td><a class="btn" id="blue">XXX</a>
+            <a th:href="@{/shiftexchange(id=${shift.id})}" class="btn" id="">UPDATE</a>
         </td>
 
     </tr>
 </table>
-<a href="/" class="btn" id="blue">RETURN</a>
+<a href="/login" class="btn" id="blue">RETURN</a>
 
 </body>
 </html>

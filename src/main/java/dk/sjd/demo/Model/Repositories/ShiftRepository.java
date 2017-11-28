@@ -40,4 +40,10 @@ public class ShiftRepository implements IShiftRepository {
         return shifts;
     }
 
+    @Override
+    public void delete(int id) {
+
+        jdbc.update("DELETE FROM shifts WHERE id=" + id + "");
+    }
+
 }
