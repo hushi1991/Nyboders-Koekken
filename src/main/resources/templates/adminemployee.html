@@ -2,19 +2,27 @@
 <html lang="en">
 <head>
     <title>Index</title>
+    <link rel="stylesheet" type="text/css"
+          href="C:\Users\Hushi\IdeaProjects\TeknikObligatorisk\src\main\resources\static\style.css"
+          th:href="@{style.css}"/>
 </head>
 <body>
 
-<h1>Hej admin</h1>
+<h1>Medarbejdere</h1>
 
 <table align="center">
     <tr>
-        <td>Medarbejdere</td>
+        <td>ID</td>
+        <td>Navn</td>
+        <td>Antal timer</td>
+        <td>Options</td>
     </tr>
     <tr th:each="employee: ${e}">
         <td th:text="${employee.id}"/>
         <td th:text="${employee.name}"/>
         <td th:text="${employee.totalHours}"/>
+        <td><a th:href="@{/adminshift(name=${employee.name})}" class="btn" id="blue">Se Vagter</a>
+        </td>
 
     </tr>
 </table>

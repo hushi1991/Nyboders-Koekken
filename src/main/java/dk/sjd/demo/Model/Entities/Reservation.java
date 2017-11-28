@@ -14,6 +14,9 @@ public class Reservation {
     private Date date;
     private String request;
 
+    public Reservation() {
+    }
+
     public Reservation(int id, String name, String phone, int guest, Date date, String request) {
         this.id = id;
         this.name = name;

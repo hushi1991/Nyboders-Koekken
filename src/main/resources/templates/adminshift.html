@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Vagter</title>
+    <link rel="stylesheet" type="text/css"
+          href="../../static/styles.css"
+          th:href="@{styles.css}"/>
+</head>
+<body>
+<h1>Vagtplan</h1>
+<table>
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Dato</td>
+        <td>ShiftStart</td>
+        <td>ShiftEnd</td>
+        <td>Hours</td>
+
+    </tr>
+    <tr th:each="shift: ${s}">
+        <td th:text="${shift.id}"/>
+        <td th:text="${shift.name}"/>
+        <td th:text="${shift.date}"/>
+        <td th:text="${shift.shiftStart}"/>
+        <td th:text="${shift.shiftEnd}"/>
+        <td th:text="${shift.hours}"/>
+        <td><a class="btn" id="blue">XXX</a>
+        </td>
+
+    </tr>
+</table>
+<a href="/" class="btn" id="blue">RETURN</a>
+
+</body>
+</html>

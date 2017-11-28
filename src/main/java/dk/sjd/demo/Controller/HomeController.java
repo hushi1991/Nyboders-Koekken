@@ -2,17 +2,13 @@ package dk.sjd.demo.Controller;
 
 import dk.sjd.demo.Model.Entities.Employee;
 import dk.sjd.demo.Model.Entities.Reservation;
+import dk.sjd.demo.Model.Entities.Shift;
 import dk.sjd.demo.Model.Entities.User;
-import dk.sjd.demo.Model.Repositories.EmployeeRepository;
-import dk.sjd.demo.Model.Repositories.IEmployeeRepository;
-import dk.sjd.demo.Model.Repositories.IUserRepository;
-import dk.sjd.demo.Model.Repositories.UserRepository;
+import dk.sjd.demo.Model.Repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -21,13 +17,17 @@ public class HomeController {
 
     ArrayList<User> users = new ArrayList<>();
     ArrayList<Employee> employees = new ArrayList<>();
-    ArrayList<Reservation> reservation = new ArrayList<>();
+    ArrayList<Reservation> reservations = new ArrayList<>();
+    ArrayList<Shift> shifts = new ArrayList<>();
 
     @Autowired
     IUserRepository userRepo = new UserRepository();
 
     @Autowired
     IEmployeeRepository employRepo = new EmployeeRepository();
+
+    @Autowired
+    IShiftRepository shiftrepo = new ShiftRepository();
 
     @RequestMapping(value = {"/login","","/","index"}, method = RequestMethod.GET)
     public String index(Model model) {
@@ -50,6 +50,13 @@ public class HomeController {
         }
 
         return "login";
+    }
+
+    @GetMapping("/adminshift")
+    public String admin(@RequestParam("name") String name, Model model){
+        shifts = shiftrepo.read(name);
+        model.addAttribute("s", shifts);
+        return "adminshift";
     }
 
 }
