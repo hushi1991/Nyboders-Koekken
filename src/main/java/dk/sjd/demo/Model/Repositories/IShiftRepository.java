@@ -9,4 +9,8 @@ public interface IShiftRepository extends ICrudRepository {
     public ArrayList<Shift> read(String name);
 
     public void delete(int id);
+
+    public Shift updateShift(Shift shift);
+
+    public Shift readSpecific(int id);
 }

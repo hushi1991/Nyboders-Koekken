@@ -13,14 +13,18 @@
 <body>
     <h1> Vagtbytte</h1>
 
-    <form   th:action="@{/update}" method="post" th:object="${us}">
-        <select>
-            <input type="text" th:field="*{studentId}" />
-            <input type="text" th:field="*{studentId}" />
-        <option type="text" th:field="{name}" value="na">Opel</option>
-        <option value="audi">Audi</option>
 
-    </select>
+    <form th:action="@{/update}" method="post" th:object="${shift}">
+        <input type="text" th:field="*{id}" th:text="${id}" readonly="readonly" />
+        <input type="text" th:field="*{name}" readonly="readonly" />
+        <input type="text" th:field="*{date}" readonly="readonly" />
+        <input type="text" th:field="*{shiftStart}" readonly="readonly" />
+        <input type="text" th:field="*{shiftEnd}" readonly="readonly" />
+        <input type="text" th:field="*{hours}" readonly="readonly" />
+
+        <input type="submit" value="Update password" />
+
+
     </form>
 </body>
 </html>
