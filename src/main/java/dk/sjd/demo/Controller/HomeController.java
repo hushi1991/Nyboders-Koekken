@@ -59,13 +59,6 @@ public class HomeController {
         return "adminshift";
     }
 
-    /*@PostMapping("/adminshift")
-    public String admindelete(@RequestParam("id") int id, Model model) {
-        shiftrepo.delete(id);
-
-        return "/login";
-    }*/
-
     @GetMapping("/shift")
     public String shift(@RequestParam("name") String name, Model model){
         shifts = shiftrepo.read(name);
