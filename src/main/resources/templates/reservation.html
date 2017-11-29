@@ -8,5 +8,19 @@
 
 <h1>reserver her</h1>
 
+<form th:action="@{/reservation}" method="get" th:object="${reservations}">
+
+    <input type="text" th:field="*{name}" />
+    <input type="text" th:field="*{phone}" />
+    <input type="text" th:field="*{guest}" />
+    <input type="date" th:field="*{date}" />
+    <input type="text" th:field="*{request}" />
+
+    <input type="submit" value="Send" />
+
+</form>
+
+
+
 </body>
 </html>

@@ -5,4 +5,6 @@ import dk.sjd.demo.Model.Entities.Reservation;
 public interface IReservationRepository extends ICrudRepository {
 
 public void create (Reservation reservation);
+
+public void delete (String name);
 }
