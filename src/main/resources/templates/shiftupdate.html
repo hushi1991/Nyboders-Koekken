@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet"
+          href="C:\Users\Bruger\Documents\GitHub\Nyboders-Koekken\src\main\resources\static\style.css"
+          th:href="@{style.css}"/>
+
+    <title>VagtÆndring </title>
+
+</head>
+
+<body>
+<h1> VagtÆndring</h1>
+
+
+<form th:action="@{/shiftupdate}" method="post" th:object="${shift}">
+    <input type="text" th:field="*{id}" th:text="${id}" readonly="readonly" />
+    <input type="text" th:field="*{name}" />
+    <input type="text" th:field="*{date}" readonly="readonly" />
+    <input type="text" th:field="*{shiftStart}" readonly="readonly" />
+    <input type="text" th:field="*{shiftEnd}" readonly="readonly" />
+    <input type="text" th:field="*{hours}" readonly="readonly" />
+
+    <input type="submit" value="Update Shift" />
+
+
+</form>
+</body>
+</html>

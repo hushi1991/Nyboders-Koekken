@@ -59,6 +59,30 @@ public class HomeController {
         return "adminshift";
     }
 
+    @GetMapping("/shiftdelete")
+    public String delete(@RequestParam("id") int id, Model model){
+        model.addAttribute("shift", shiftrepo.readSpecific(id));
+        return "shiftdelete";
+    }
+
+    @PostMapping("shiftdelete")
+    public String deleteshift(@ModelAttribute Shift shift){
+        shiftrepo.delete(shift.getId());
+        return "/login";
+    }
+
+    @RequestMapping(value = {"/shiftupdate"}, method = RequestMethod.GET)
+    public String shiftUpdate(@RequestParam("id") int id, Model model) {
+        model.addAttribute("shift", shiftrepo.readSpecific(id));
+        return "shiftupdate";
+    }
+
+    @PostMapping("shiftupdate")
+    public String updateShift(@ModelAttribute Shift shift){
+        shiftrepo.updateShift(shift);
+        return "redirect:/";
+    }
+
     @GetMapping("/shift")
     public String shift(@RequestParam("name") String name, Model model){
         shifts = shiftrepo.read(name);

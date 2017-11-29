@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Delete Vagt</title>
+    <title>Delete shift</title>
     <link rel="stylesheet" type="text/css"
           href="../../static/styles.css"
           th:href="@{styles.css}"/>
 </head>
 <body>
-<h1>Delete Vagt</h1>
+<h1>Delete Shift</h1>
 
-<form th:action="@{/shiftdelete}" method="post" th:object="${s}"> <!-- movie = @ModelAttribute -->
-    <input type="text" th:field="*{id}" th:text="${user_id}" readonly="readonly" />
+<form th:action="@{/shiftdelete}" method="post" th:object="${shift}">
+    <input type="text" th:field="*{id}" readonly="readonly" />
     <input type="text" th:field="*{name}" readonly="readonly" />
     <input type="text" th:field="*{date}" readonly="readonly" />
     <input type="text" th:field="*{shiftStart}" readonly="readonly" />

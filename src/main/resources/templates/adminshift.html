@@ -26,7 +26,7 @@
         <td th:text="${shift.shiftStart}"/>
         <td th:text="${shift.shiftEnd}"/>
         <td th:text="${shift.hours}"/>
-        <td><a class="btn" id="red">DELETE</a>
+        <td><a th:href="@{/shiftdelete(id=${shift.id})}" class="btn" id="red">DELETE</a>
             <a th:href="@{/shiftupdate(id=${shift.id})}" class="btn" id="">UPDATE</a>
         </td>
 
