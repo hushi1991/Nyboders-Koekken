@@ -116,8 +116,7 @@ public class HomeController {
 
 
     @RequestMapping(value = {"/reservation"}, method = RequestMethod.GET)
-    public String reservation(@ModelAttribute Reservation reservation, Model model)
-    {
+    public String reservation(Model model) {
         model.addAttribute("reservation", new Reservation());
         return "reservation";
     }

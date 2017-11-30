@@ -35,9 +35,9 @@ public class ReservationRepository implements IReservationRepository {
     }
 
     @Override
-    public void delete(String name) {
+    public void delete(String phone) {
 
-        jdbc.update("DELETE FROM reservations WHERE NAME =" + name + "");
+        jdbc.update("DELETE FROM reservations WHERE phone =" + phone + "");
     }
 
 }
