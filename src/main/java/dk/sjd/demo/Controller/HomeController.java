@@ -30,6 +30,9 @@ public class HomeController {
     @Autowired
     IShiftRepository shiftrepo = new ShiftRepository();
 
+    @Autowired
+    IReservationRepository reserrepo = new ReservationRepository();
+
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("user", new User());
@@ -109,12 +112,31 @@ public class HomeController {
         return "index";
     }
 
-    @RequestMapping(value = {"reservation"}, method = RequestMethod.GET)
+
+    @RequestMapping(value = {"/reservation"}, method = RequestMethod.GET)
     public String reservation(@ModelAttribute Reservation reservation, Model model)
     {
         model.addAttribute("reservation", new Reservation());
         return "reservation";
     }
 
+    @PostMapping("reservation")
+    public String reservation(@ModelAttribute Reservation reservation){
+        reserrepo.create(reservation);
+        return "redirect:/";
+    }
+/*
+    @GetMapping("/reservationdelete")
+    public String delete(@RequestParam("name") String name, Model model){
+        model.addAttribute("reservation", reserrepo.readAll(name));
+        return "reservationdelete";
+    }
+
+    @PostMapping("reservationdelete")
+    public String deletereservation(@ModelAttribute Reservation reservation){
+        reserrepo.delete(reservation.getName());
+        return "/index";
+    }
+*/
 }
 
