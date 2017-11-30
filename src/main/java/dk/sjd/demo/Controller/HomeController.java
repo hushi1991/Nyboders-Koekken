@@ -95,6 +95,8 @@ public class HomeController {
 
     @RequestMapping(value = {"/shiftexchange"}, method = RequestMethod.GET)
     public String shiftexchange(@RequestParam("id") int id, Model model) {
+        shifts = shiftrepo.readAll();
+        model.addAttribute("s", shifts);
         model.addAttribute("shift", shiftrepo.readSpecific(id));
         return "shiftexchange";
     }
