@@ -22,7 +22,7 @@ public class ReservationRepository implements IReservationRepository {
 
         while (sqlRowSet.next()) {
             reservation.add(new Reservation(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getString("phone")
-                    , sqlRowSet.getInt("guest"), sqlRowSet.getDate("date"), sqlRowSet.getString("requets")));
+                    , sqlRowSet.getInt("guest"), sqlRowSet.getDate("date"), sqlRowSet.getString("request")));
         }
 
         return reservation;

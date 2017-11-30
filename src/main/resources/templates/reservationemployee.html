@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css"
+          href="C:\Users\Hushi\IdeaProjects\TeknikObligatorisk\src\main\resources\static\style.css"
+          th:href="@{style.css}"/>
+</head>
+<body>
+
+<h1>Reservationer</h1>
+
+<table align="center">
+    <tr>
+        <td>ID</td>
+        <td>Navn</td>
+        <td>Telefon</td>
+        <td>Antal Gæster</td>
+        <td>Dato</td>
+        <td>Særlig Bemærkninger</td>
+        <td>Valg</td>
+    </tr>
+    <tr th:each="reservation: ${r}">
+        <td th:text="${reservation.id}"/>
+        <td th:text="${reservation.name}"/>
+        <td th:text="${reservation.phone}"/>
+        <td th:text="${reservation.guest}"/>
+        <td th:text="${reservation.date}"/>
+        <td th:text="${reservation.request}"/>
+        <td><a class="btn" id="red">Slet Reservation</a>
+            <a class="btn" id="green">Ret Reservation</a>
+        </td>
+
+    </tr>
+</table>
+
+<a href="/reservation" class="btn" id="blue">Opret Reservationer</a>
+
+</body>
+</html>
