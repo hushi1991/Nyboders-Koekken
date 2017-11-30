@@ -14,9 +14,14 @@
     <h1> Vagtbytte</h1>
 
 
-    <form th:action="@{/update}" method="post" th:object="${shift}">
+    <form th:action="@{/shiftexchange}" method="post" th:object="${shift}">
         <input type="text" th:field="*{id}" th:text="${id}" readonly="readonly" />
-        <input type="text" th:field="*{name}" readonly="readonly" />
+            <select>
+                <option value="">Select Name</option>
+                <option th:each="shift : ${s}"
+                        th:value="${shift.name}"
+                        th:text="${shift.name}"></option>
+            </select>
         <input type="text" th:field="*{date}" readonly="readonly" />
         <input type="text" th:field="*{shiftStart}" readonly="readonly" />
         <input type="text" th:field="*{shiftEnd}" readonly="readonly" />
