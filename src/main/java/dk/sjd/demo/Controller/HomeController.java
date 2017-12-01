@@ -34,7 +34,7 @@ public class HomeController {
     IReservationRepository reserrepo = new ReservationRepository();
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
-    public String index(Model model) {
+    public String loginIndex(Model model) {
         model.addAttribute("user", new User());
         return "login";
     }
