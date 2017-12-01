@@ -22,10 +22,14 @@
         <td th:text="${employee.name}"/>
         <td th:text="${employee.totalHours}"/>
         <td><a th:href="@{/adminshift(name=${employee.name})}" class="btn" id="blue">Se Vagter</a>
+            <a th:href="@{/admindelete(name=${employee.name})}" class="btn" id="red">Fjern Medarbejder</a>
         </td>
 
     </tr>
 </table>
+
+<a href="/reservationemployee" class="btn" id="blue">Se Reservationer</a>
+<a href="/admincreate" class="btn" id="blue">Opret Medarbejder</a>
 
 </body>
 </html>

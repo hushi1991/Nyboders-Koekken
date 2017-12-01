@@ -55,6 +55,13 @@ public class HomeController {
         return "login";
     }
 
+    @GetMapping("/reservationemployee")
+    public String resEmployee(Model model) {
+        reservations = reserrepo.readAll();
+        model.addAttribute("r", reservations);
+        return "reservationemployee";
+    }
+
     @GetMapping("/adminshift")
     public String admin(@RequestParam("name") String name, Model model){
         shifts = shiftrepo.read(name);
