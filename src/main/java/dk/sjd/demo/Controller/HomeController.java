@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.jws.WebParam;
 import java.util.ArrayList;
 
 @Controller
@@ -28,10 +27,10 @@ public class HomeController {
     IEmployeeRepository employRepo = new EmployeeRepository();
 
     @Autowired
-    IShiftRepository shiftrepo = new ShiftRepository();
+    IShiftRepository shiftRepo = new ShiftRepository();
 
     @Autowired
-    IReservationRepository reserrepo = new ReservationRepository();
+    IReservationRepository reserRepo = new ReservationRepository();
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
     public String loginIndex(Model model) {
@@ -57,60 +56,60 @@ public class HomeController {
 
     @GetMapping("/reservationemployee")
     public String resEmployee(Model model) {
-        reservations = reserrepo.readAll();
+        reservations = reserRepo.readAll();
         model.addAttribute("r", reservations);
         return "reservationemployee";
     }
 
     @GetMapping("/adminshift")
     public String admin(@RequestParam("name") String name, Model model){
-        shifts = shiftrepo.read(name);
+        shifts = shiftRepo.read(name);
         model.addAttribute("s", shifts);
         return "adminshift";
     }
 
     @GetMapping("/shiftdelete")
     public String delete(@RequestParam("id") int id, Model model){
-        model.addAttribute("shift", shiftrepo.readSpecific(id));
+        model.addAttribute("shift", shiftRepo.readSpecific(id));
         return "shiftdelete";
     }
 
     @PostMapping("shiftdelete")
     public String deleteshift(@ModelAttribute Shift shift){
-        shiftrepo.delete(shift.getId());
+        shiftRepo.delete(shift.getId());
         return "/login";
     }
 
     @RequestMapping(value = {"/shiftupdate"}, method = RequestMethod.GET)
     public String shiftUpdate(@RequestParam("id") int id, Model model) {
-        model.addAttribute("shift", shiftrepo.readSpecific(id));
+        model.addAttribute("shift", shiftRepo.readSpecific(id));
         return "shiftupdate";
     }
 
     @PostMapping("shiftupdate")
     public String updateShift(@ModelAttribute Shift shift){
-        shiftrepo.updateShift(shift);
+        shiftRepo.updateShift(shift);
         return "redirect:/";
     }
 
     @GetMapping("/shift")
     public String shift(@RequestParam("name") String name, Model model){
-        shifts = shiftrepo.read(name);
+        shifts = shiftRepo.read(name);
         model.addAttribute("s", shifts);
         return "shift";
     }
 
     @RequestMapping(value = {"/shiftexchange"}, method = RequestMethod.GET)
     public String shiftexchange(@RequestParam("id") int id, Model model) {
-        shifts = shiftrepo.readAll();
+        shifts = shiftRepo.readAll();
         model.addAttribute("s", shifts);
-        model.addAttribute("shift", shiftrepo.readSpecific(id));
+        model.addAttribute("shift", shiftRepo.readSpecific(id));
         return "shiftexchange";
     }
 
     @PostMapping("shiftexchange")
     public String exchangeShift(@ModelAttribute Shift shift){
-        shiftrepo.updateShift(shift);
+        shiftRepo.updateShift(shift);
         return "redirect:/";
     }
 
@@ -129,20 +128,20 @@ public class HomeController {
     }
 
     @PostMapping("reservation")
-    public String reservation(@ModelAttribute Reservation reservation){
-        reserrepo.create(reservation);
+    public String createReservation(@ModelAttribute Reservation reservation){
+        reserRepo.create(reservation);
         return "redirect:/";
     }
 /*
     @GetMapping("/reservationdelete")
-    public String delete(@RequestParam("name") String name, Model model){
-        model.addAttribute("reservation", reserrepo.readAll(name));
+    public String deleteReservation(@RequestParam("phone") String phone, Model model){
+        model.addAttribute("reservation", reserrepo.readAll(phone));
         return "reservationdelete";
     }
 
     @PostMapping("reservationdelete")
-    public String deletereservation(@ModelAttribute Reservation reservation){
-        reserrepo.delete(reservation.getName());
+    public String reservationDelete(@ModelAttribute Reservation reservation){
+        reserrepo.delete(reservation.getPhone());
         return "/index";
     }
 */
