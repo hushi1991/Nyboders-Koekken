@@ -90,9 +90,10 @@ public class HomeController {
 
     //Den valgte vagt bliver slettet
     @PostMapping("/shiftdelete")
-    public String deleteshift(@ModelAttribute Shift shift){
-        shiftRepo.delete(shift.getId());
-        return "/login";
+    public String deleteshift(@RequestParam(name = "id") int shit){
+       shiftRepo.delete(shit);
+        System.out.println(shit);
+        return "index";
     }
 
     //Her vises en specific vagt baseret på vagtens id så man kan tage stilling til om den skal opdateres
