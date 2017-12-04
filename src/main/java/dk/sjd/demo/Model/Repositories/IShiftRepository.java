@@ -13,4 +13,6 @@ public interface IShiftRepository extends ICrudRepository {
     public void updateShift(Shift shift);
 
     public Shift readSpecific(int id);
+
+    public void create(Shift s);
 }

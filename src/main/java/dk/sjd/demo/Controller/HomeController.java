@@ -80,6 +80,18 @@ public class HomeController {
         return "adminshift";
     }
 
+    @GetMapping("/shiftcreate")
+    public String create(Model model){
+        model.addAttribute("shift", new Shift());
+        return "shiftcreate";
+    }
+
+    @PostMapping("/shiftcreate")
+    public String createShift(@ModelAttribute Shift s){
+        shiftRepo.create(s);
+        return "redirect:/";
+    }
+
     //Her vises en specific vagt baseret på vagtens id så man kan tage stilling til om den skal slettes
     @GetMapping("/shiftdelete")
     public String delete(@RequestParam("id") int id, Model model){
@@ -90,15 +102,19 @@ public class HomeController {
 
     //Den valgte vagt bliver slettet
     @PostMapping("/shiftdelete")
-    public String deleteshift(@RequestParam(name = "id") int shift){
+    public String deleteshift(@RequestParam(name = "id") int shift, Model model){
         shiftRepo.delete(shift);
-        return "index";
+        employees = employRepo.readAll();
+        model.addAttribute("e", employees);
+        return "adminemployee";
     }
 
     //Her vises en specific vagt baseret på vagtens id så man kan tage stilling til om den skal opdateres
     //På shiftupdate for admin kan alle informationer rettes i.
     @RequestMapping(value = {"/shiftupdate"}, method = RequestMethod.GET)
     public String shiftUpdate(@RequestParam("id") int id, Model model) {
+        employees = employRepo.readAll();
+        model.addAttribute("e", employees);
         model.addAttribute("shift", shiftRepo.readSpecific(id));
         return "shiftupdate";
     }

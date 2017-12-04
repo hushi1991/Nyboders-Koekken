@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Shift to DB</title>
+    <link rel="stylesheet" type="text/css"
+          href="../../static/styles.css"
+          th:href="@{styles.css}"/>
+</head>
+<body>
+<h1>Add Shift to DB</h1>
+
+<form action="/create" th:action="@{/shiftcreate}" method="post" th:object="${shift}">
+
+    <input type="text" th:field="*{name}" />
+    <input type="date" th:field="*{date}" />
+    <input type="time" th:field="*{shiftStart}" />
+    <input type="time" th:field="*{shiftEnd}" />
+    <input type="text" th:field="*{hours}" />
+
+
+    <input type="submit" value="Opret" />
+
+</form>
+
+</body>
+</html>
