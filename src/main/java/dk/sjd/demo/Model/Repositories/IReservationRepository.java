@@ -6,5 +6,7 @@ public interface IReservationRepository extends ICrudRepository {
 
 public void create (Reservation reservation);
 
-public void delete (String name);
+public void delete (String phone);
+
+
 }

@@ -10,7 +10,7 @@ public interface IShiftRepository extends ICrudRepository {
 
     public void delete(int id);
 
-    public Shift updateShift(Shift shift);
+    public void updateShift(Shift shift);
 
     public Shift readSpecific(int id);
 }

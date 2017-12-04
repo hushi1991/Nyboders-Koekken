@@ -1,13 +1,17 @@
 package dk.sjd.demo.Model.Entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Shift {
 
     private int id;
     private String name;
-    private Date date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;
     private Time shiftStart;
     private Time shiftEnd;
     private int hours;
@@ -16,7 +20,7 @@ public class Shift {
     public Shift() {
     }
 
-    public Shift(int id, String name, Date date, Time shiftStart, Time shiftEnd, int hours) {
+    public Shift(int id, String name, LocalDate date, Time shiftStart, Time shiftEnd, int hours) {
         this.id = id;
         this.name = name;
         this.date = date;
@@ -41,11 +45,11 @@ public class Shift {
         this.name = name;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

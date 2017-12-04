@@ -22,7 +22,7 @@ public class ReservationRepository implements IReservationRepository {
 
         while (sqlRowSet.next()) {
             reservation.add(new Reservation(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getString("phone")
-                    , sqlRowSet.getInt("guest"), sqlRowSet.getDate("date"), sqlRowSet.getString("request")));
+                    , sqlRowSet.getInt("guest"), sqlRowSet.getDate("date"),sqlRowSet.getTime("time"), sqlRowSet.getString("request")));
         }
 
         return reservation;
@@ -31,7 +31,8 @@ public class ReservationRepository implements IReservationRepository {
     @Override
 // opdeles af plus eller komma?
     public void create(Reservation reservation){
-        jdbc.update("INSERT INTO reservation(name,phone,guest,date,request) VALUES ('" + reservation.getName() + "') + ('" + reservation.getPhone() + "') + ('" + reservation.getGuest() + "') + ('" + reservation.getDate() + "') ('" + reservation.getRequest() + "') ");
+        jdbc.update("INSERT INTO reservations(name, phone, guest, date, time, request) VALUES('" + reservation.getName() +"', '"+ reservation.getPhone() +"', '"+ reservation.getGuest() +"', '"+ reservation.getDate() +"', '"+ reservation.getTime() +"', '"+ reservation.getRequest() +"')");
+        // jdbc.update("INSERT INTO reservation(name,phone,guest,date,time,request) VALUES ('" + reservation.getName() + "') + ('" + reservation.getPhone() + "') + ('" + reservation.getGuest() + "') + ('" + reservation.getDate() + "') + ('" + reservation.getTime() + "') + ('" + reservation.getRequest() + "') ");
     }
 
     @Override

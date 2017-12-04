@@ -6,9 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
 
 @Repository
 public class ShiftRepository implements IShiftRepository {
@@ -22,7 +20,7 @@ public class ShiftRepository implements IShiftRepository {
         ArrayList<Shift> shifts = new ArrayList<>();
 
         while(sqlRowSet.next()) {
-            shifts.add(new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date"), sqlRowSet.getTime("shiftStart"), sqlRowSet.getTime("shiftEnd"), sqlRowSet.getInt("hours")));
+            shifts.add(new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date").toLocalDate(), sqlRowSet.getTime("shiftStart"), sqlRowSet.getTime("shiftEnd"), sqlRowSet.getInt("hours")));
         }
 
         return shifts;
@@ -34,7 +32,7 @@ public class ShiftRepository implements IShiftRepository {
         ArrayList<Shift> shifts = new ArrayList<>();
 
         while(sqlRowSet.next()) {
-            shifts.add(new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date"), sqlRowSet.getTime("shiftStart"), sqlRowSet.getTime("shiftEnd"), sqlRowSet.getInt("hours")));
+            shifts.add(new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date").toLocalDate(), sqlRowSet.getTime("shiftStart"), sqlRowSet.getTime("shiftEnd"), sqlRowSet.getInt("hours")));
         }
 
         return shifts;
@@ -51,20 +49,15 @@ public class ShiftRepository implements IShiftRepository {
         SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM shifts WHERE id =" + id + "");
 
         if (sqlRowSet.next()){
-            return new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date"), sqlRowSet.getTime("shiftStart"), sqlRowSet.getTime("shiftEnd"), sqlRowSet.getInt("hours"));
+            return new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date").toLocalDate(), sqlRowSet.getTime("shiftStart"), sqlRowSet.getTime("shiftEnd"), sqlRowSet.getInt("hours"));
         }
         return new Shift();
     }
 
     @Override
-    public Shift updateShift(Shift shift){
+    public void updateShift(Shift shift){
 
-        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM shifts WHERE id = '" +  shift.getId()  + "'");
-
-        if(sqlRowSet.next()) {
-            return new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date"), sqlRowSet.getTime("shiftStart"), sqlRowSet.getTime("shiftEnd"), sqlRowSet.getInt("hours"));
-        }
-        return null;
+        jdbc.update("UPDATE shifts set name = '"+ shift.getName() +"', date = '"+ shift.getDate() +"', shiftStart = '"+ shift.getShiftStart() +"', shiftEnd = '"+ shift.getShiftEnd() +"', hours = '"+ shift.getHours() +"' WHERE id =" + shift.getId() +"");
     }
 
 }

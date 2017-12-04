@@ -22,9 +22,9 @@
                         th:value="${shift.name}"
                         th:text="${shift.name}"></option>
             </select>
-        <input type="text" th:field="*{date}" readonly="readonly" />
-        <input type="text" th:field="*{shiftStart}" readonly="readonly" />
-        <input type="text" th:field="*{shiftEnd}" readonly="readonly" />
+        <input type="date" th:field="*{date}" readonly="readonly" />
+        <input type="time" th:field="*{shiftStart}" readonly="readonly" />
+        <input type="time" th:field="*{shiftEnd}" readonly="readonly" />
         <input type="text" th:field="*{hours}" readonly="readonly" />
 
         <input type="submit" value="Byt Vagt" />

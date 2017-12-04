@@ -2,6 +2,8 @@ package dk.sjd.demo.Model.Entities;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.sql.Time;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Reservation {
@@ -10,19 +12,21 @@ public class Reservation {
     private String name;
     private String phone;
     private int guest;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
+    private Time time;
     private String request;
 
     public Reservation() {
     }
 
-    public Reservation(int id, String name, String phone, int guest, Date date, String request) {
+    public Reservation(int id, String name, String phone, int guest, Date date, Time time, String request) {
         this.id = id;
         this.name = name;
         this.phone = phone;
         this.guest = guest;
         this.date = date;
+        this.time = time;
         this.request = request;
     }
 
@@ -64,6 +68,14 @@ public class Reservation {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
     }
 
     public String getRequest() {
