@@ -90,9 +90,8 @@ public class HomeController {
 
     //Den valgte vagt bliver slettet
     @PostMapping("/shiftdelete")
-    public String deleteshift(@RequestParam(name = "id") int shit){
-       shiftRepo.delete(shit);
-        System.out.println(shit);
+    public String deleteshift(@RequestParam(name = "id") int shift){
+        shiftRepo.delete(shift);
         return "index";
     }
 
