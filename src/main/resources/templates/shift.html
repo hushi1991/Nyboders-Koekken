@@ -20,12 +20,12 @@
 
     </tr>
     <tr th:each="shift: ${s}">
-        <td th:text="${shift.id}"/>
-        <td th:text="${shift.name}"/>
-        <td th:text="${shift.date}"/>
-        <td th:text="${shift.shiftStart}"/>
-        <td th:text="${shift.shiftEnd}"/>
-        <td th:text="${shift.hours}"/>
+            <td th:text="${shift.id}"/>
+            <td th:text="${shift.name}"/>
+            <td th:text="${shift.date}"/>
+            <td th:text="${shift.shiftStart}"/>
+            <td th:text="${shift.shiftEnd}"/>
+            <td th:text="${shift.hours}"/>
         <td>
             <a th:href="@{/shiftexchange(id=${shift.id})}" class="btn" id="">BYT VAGT</a>
         </td>

@@ -71,7 +71,7 @@ public class HomeController {
         model.addAttribute("r", reservations);
         return "reservationemployee";
     }
-    
+
     //Her vises adminshift siden med en specific medarbejders vagter baseret på navnet.
     @GetMapping("/adminshift")
     public String admin(@RequestParam("name") String name, Model model){
@@ -83,12 +83,13 @@ public class HomeController {
     //Her vises en specific vagt baseret på vagtens id så man kan tage stilling til om den skal slettes
     @GetMapping("/shiftdelete")
     public String delete(@RequestParam("id") int id, Model model){
-        model.addAttribute("shift", shiftRepo.readSpecific(id));
+        Shift s = shiftRepo.readSpecific(id);
+        model.addAttribute("shift", s);
         return "shiftdelete";
     }
 
     //Den valgte vagt bliver slettet
-    @PostMapping("shiftdelete")
+    @PostMapping("/shiftdelete")
     public String deleteshift(@ModelAttribute Shift shift){
         shiftRepo.delete(shift.getId());
         return "/login";

@@ -10,12 +10,12 @@
 <h1>Delete Shift</h1>
 
 <form th:action="@{/shiftdelete}" method="post" th:object="${shift}">
-    <input type="text" th:field="*{id}" readonly="readonly" />
-    <input type="text" th:field="*{name}" readonly="readonly" />
-    <input type="text" th:field="*{date}" readonly="readonly" />
-    <input type="text" th:field="*{shiftStart}" readonly="readonly" />
-    <input type="text" th:field="*{shiftEnd}" readonly="readonly" />
-    <input type="text" th:field="*{hours}" readonly="readonly" />
+    <input type="text" th:field="*{id}" th:text="${id}" readonly="readonly" />
+    <input type="text" th:field="*{name}" th:text="${name}" readonly="readonly" />
+    <input type="text" th:field="*{date}" th:text="${date}" readonly="readonly" />
+    <input type="text" th:field="*{shiftStart}" th:text="${shiftStart}" readonly="readonly" />
+    <input type="text" th:field="*{shiftEnd}" th:text="${shiftEnd}" readonly="readonly" />
+    <input type="text" th:field="*{hours}" th:text="${hours}" readonly="readonly" />
 
 
     <input type="submit" value="Delete" />

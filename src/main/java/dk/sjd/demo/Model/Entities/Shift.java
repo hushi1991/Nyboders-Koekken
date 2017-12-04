@@ -12,6 +12,7 @@ public class Shift {
     private Time shiftEnd;
     private int hours;
 
+
     public Shift() {
     }
 
