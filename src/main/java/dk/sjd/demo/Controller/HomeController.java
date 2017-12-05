@@ -82,6 +82,7 @@ public class HomeController {
 
     @GetMapping("/shiftcreate")
     public String create(Model model){
+
         model.addAttribute("shift", new Shift());
         return "shiftcreate";
     }

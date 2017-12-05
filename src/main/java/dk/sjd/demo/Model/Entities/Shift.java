@@ -12,15 +12,15 @@ public class Shift {
     private String name;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
-    private Time shiftStart;
-    private Time shiftEnd;
+    private String shiftStart;
+    private String shiftEnd;
     private int hours;
 
 
     public Shift() {
     }
 
-    public Shift(int id, String name, LocalDate date, Time shiftStart, Time shiftEnd, int hours) {
+    public Shift(int id, String name, LocalDate date, String shiftStart, String shiftEnd, int hours) {
         this.id = id;
         this.name = name;
         this.date = date;
@@ -53,19 +53,19 @@ public class Shift {
         this.date = date;
     }
 
-    public Time getShiftStart() {
+    public String getShiftStart() {
         return shiftStart;
     }
 
-    public void setShiftStart(Time shiftStart) {
+    public void setShiftStart(String shiftStart) {
         this.shiftStart = shiftStart;
     }
 
-    public Time getShiftEnd() {
+    public String getShiftEnd() {
         return shiftEnd;
     }
 
-    public void setShiftEnd(Time shiftEnd) {
+    public void setShiftEnd(String shiftEnd) {
         this.shiftEnd = shiftEnd;
     }
 
@@ -75,5 +75,17 @@ public class Shift {
 
     public void setHours(int hours) {
         this.hours = hours;
+    }
+
+    @Override
+    public String toString() {
+        return "Shift{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", date=" + date +
+                ", shiftStart=" + shiftStart +
+                ", shiftEnd=" + shiftEnd +
+                ", hours=" + hours +
+                '}';
     }
 }

@@ -20,7 +20,7 @@ public class ShiftRepository implements IShiftRepository {
         ArrayList<Shift> shifts = new ArrayList<>();
 
         while(sqlRowSet.next()) {
-            shifts.add(new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date").toLocalDate(), sqlRowSet.getTime("shiftStart"), sqlRowSet.getTime("shiftEnd"), sqlRowSet.getInt("hours")));
+            shifts.add(new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date").toLocalDate(), sqlRowSet.getString("shiftStart"), sqlRowSet.getString("shiftEnd"), sqlRowSet.getInt("hours")));
         }
 
         return shifts;
@@ -32,7 +32,7 @@ public class ShiftRepository implements IShiftRepository {
         ArrayList<Shift> shifts = new ArrayList<>();
 
         while(sqlRowSet.next()) {
-            shifts.add(new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date").toLocalDate(), sqlRowSet.getTime("shiftStart"), sqlRowSet.getTime("shiftEnd"), sqlRowSet.getInt("hours")));
+            shifts.add(new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date").toLocalDate(), sqlRowSet.getString("shiftStart"), sqlRowSet.getString("shiftEnd"), sqlRowSet.getInt("hours")));
         }
 
         return shifts;
@@ -49,7 +49,7 @@ public class ShiftRepository implements IShiftRepository {
         SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM shifts WHERE id =" + id + "");
 
         if (sqlRowSet.next()){
-            return new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date").toLocalDate(), sqlRowSet.getTime("shiftStart"), sqlRowSet.getTime("shiftEnd"), sqlRowSet.getInt("hours"));
+            return new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date").toLocalDate(), sqlRowSet.getString("shiftStart"), sqlRowSet.getString("shiftEnd"), sqlRowSet.getInt("hours"));
         }
         return new Shift();
     }
