@@ -84,10 +84,12 @@ public class ShiftRepository implements IShiftRepository {
         System.out.println(diffhour);
         System.out.println(diffmin % 60);
 
+        s.setHours(i);
 
 
 
-        jdbc.update("INSERT INTO shifts (name, date, shiftStart, shiftEnd) VALUES('" + s.getName() +"', '"+ s.getDate() +"', '"+ s.getShiftStart() +"', '"+ s.getShiftEnd() +"')");
+
+        jdbc.update("INSERT INTO shifts (name, date, shiftStart, shiftEnd, hours) VALUES('" + s.getName() +"', '"+ s.getDate() +"', '"+ s.getShiftStart() +"', '"+ s.getShiftEnd() +"', '"+ s.getHours() +"')");
     }
 
 
