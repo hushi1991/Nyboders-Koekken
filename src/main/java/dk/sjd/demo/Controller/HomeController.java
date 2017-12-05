@@ -82,7 +82,6 @@ public class HomeController {
 
     @GetMapping("/shiftcreate")
     public String create(Model model){
-
         model.addAttribute("shift", new Shift());
         return "shiftcreate";
     }
@@ -192,18 +191,17 @@ public class HomeController {
     }
 
 
-/*
     @GetMapping("/reservationdelete")
     public String deleteReservation(@RequestParam("phone") String phone, Model model){
-        model.addAttribute("reservation", reserrepo.readAll(phone));
+        model.addAttribute("reservation", reserRepo.readAll());
         return "reservationdelete";
     }
 
     @PostMapping("reservationdelete")
     public String reservationDelete(@ModelAttribute Reservation reservation){
-        reserrepo.delete(reservation.getPhone());
+        reserRepo.delete(reservation.getPhone());
         return "/index";
     }
-*/
+
 }
 

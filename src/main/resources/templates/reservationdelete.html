@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Delete reservation</title>
+
+</head>
+<body>
+<h1>Delete Reservation</h1>
+
+<form th:action="@{/reservationdelete}" method="post" th:object="${reservation}">
+
+    <input th:field="*{name}" readonly="readonly" />
+    <input type="text" th:field="*{phone}" />
+    <input th:field="*{guest}" readonly="readonly" />
+    <input th:field="*{date}" readonly="readonly" />
+    <input th:field="*{time}" readonly="readonly" />
+    <input th:field="*{request}" readonly="readonly" />
+
+
+    <input type="submit" value="Delete" />
+
+
+</form>
+
+</body>
+</html>

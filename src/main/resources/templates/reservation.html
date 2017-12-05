@@ -8,7 +8,7 @@
 
 <h1>reserver her</h1>
 
-<form th:action="@{/reservation}" method="post" th:object="${reservation}">
+<form action="/create" th:action="@{/reservation}" method="post" th:object="${reservation}">
 
     <input type="text" th:field="*{name}" placeholder="name"/>
     <input type="text" th:field="*{phone}" placeholder="phone"/>
@@ -17,7 +17,7 @@
     <input type="time" th:field="*{time}" />
     <input type="text" th:field="*{request}" placeholder="Særlige Bemærkninger"/>
 
-    <input type="submit" value="Send" />
+    <input type="submit" value="Opret" />
 
 
 </form>
