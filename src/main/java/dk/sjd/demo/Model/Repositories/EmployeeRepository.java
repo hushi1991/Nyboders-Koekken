@@ -25,4 +25,9 @@ public class EmployeeRepository implements IEmployeeRepository {
 
         return employees;
     }
+
+    @Override
+    public void createEmployee(Employee employee){
+        jdbc.update("INSERT INTO employees(name, totalHours) VALUES('" + employee.getName() +"', '"+ employee.getTotalHours() +"')");
+    }
 }

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+</head>
+<body background="http://nyboderskoekken.dk/wp-content/uploads/2017/11/DSC1416.jpg">
+
+<h1>OPRET MEDARBEJDER</h1>
+
+<form th:action="@{/employee}" method="post" th:object="${employee}">
+
+    <input type="text" th:field="*{name}" placeholder="Navn"/>
+    <input type="text" th:field="*{totalHours}" placeholder="Antal Timer"/>
+
+    <input type="submit" value="Send" />
+</form>
+
+
+
+</body>
+</html>

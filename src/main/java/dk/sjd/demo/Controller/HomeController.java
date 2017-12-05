@@ -173,6 +173,22 @@ public class HomeController {
         reserRepo.create(reservation);
         return "redirect:/";
     }
+
+    //Siden hvor medarbejdere kan skabes
+    @RequestMapping(value = {"/employeecreate"}, method = RequestMethod.GET)
+    public String employee(Model model) {
+        model.addAttribute("employee", new Employee());
+        return "employeecreate";
+    }
+
+    //Den indtastede information til medarbejderen gemmes og bliver gemt i DB.
+    @PostMapping("employee")
+    public String createEmployee(@ModelAttribute Employee employee){
+        employRepo.createEmployee(employee);
+        return "redirect:/";
+    }
+
+
 /*
     @GetMapping("/reservationdelete")
     public String deleteReservation(@RequestParam("phone") String phone, Model model){
