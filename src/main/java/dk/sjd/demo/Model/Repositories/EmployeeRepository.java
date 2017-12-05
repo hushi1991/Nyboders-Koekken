@@ -1,6 +1,7 @@
 package dk.sjd.demo.Model.Repositories;
 
 import dk.sjd.demo.Model.Entities.Employee;
+import dk.sjd.demo.Model.Entities.Shift;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -30,4 +31,28 @@ public class EmployeeRepository implements IEmployeeRepository {
     public void createEmployee(Employee employee){
         jdbc.update("INSERT INTO employees(name, totalHours) VALUES('" + employee.getName() +"', '"+ employee.getTotalHours() +"')");
     }
+
+    @Override
+    public void deleteEmployee(int id) {
+
+        jdbc.update("DELETE FROM employees WHERE id=" + id + "");
+    }
+
+    @Override
+    public Employee readSpecificEmployee(int id) {
+        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM employees WHERE id =" + id + "");
+
+        if (sqlRowSet.next()){
+            return new Employee(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getInt("totalHours"));
+        }
+        return new Employee();
+    }
+
+    /*
+    public void calculateHours(Employee employee){
+
+        jdbc.update("SELECT sum(hours) FROM shifts WHERE name='Joachim Stougaard'");
+    }
+
+    */
 }
