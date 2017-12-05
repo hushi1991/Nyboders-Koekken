@@ -1,7 +1,9 @@
 package dk.sjd.demo.Model.Repositories;
 
+import com.sun.org.apache.regexp.internal.RE;
 import dk.sjd.demo.Model.Entities.Reservation;
 import dk.sjd.demo.Model.Entities.Shift;
+import dk.sjd.demo.Model.Entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -29,16 +31,30 @@ public class ReservationRepository implements IReservationRepository {
         return reservation;
     }
 
-  /*  @Override
-    public Reservation readSpecefic(String phone) {
+    @Override
+    public ArrayList<Reservation> readAllPhone(String phone) {
+        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM reservations WHERE phone =" + phone + "");
+        ArrayList<Reservation> reservation = new ArrayList<>();
+
+        while (sqlRowSet.next()) {
+            reservation.add(new Reservation(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getString("phone")
+                    , sqlRowSet.getInt("guest"), sqlRowSet.getDate("date").toLocalDate(),sqlRowSet.getString("time"), sqlRowSet.getString("request")));
+        }
+
+        return reservation;
+    }
+
+
+    @Override
+    public Reservation readSpecific(String phone) {
         SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM reservations WHERE phone =" + phone + "");
 
         if (sqlRowSet.next()){
-            return new Reservation(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getString("phone"), sqlRowSet.getInt("guest"), sqlRowSet.getDate("date"), sqlRowSet.getTime("time"), sqlRowSet.getString("reguest"));
+            return new Reservation(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getString("phone"), sqlRowSet.getInt("guest"), sqlRowSet.getDate("date").toLocalDate(), sqlRowSet.getString("time"), sqlRowSet.getString("request"));
         }
         return new Reservation();
     }
-*/
+
 
     @Override
 // opdeles af plus eller komma?
@@ -51,6 +67,18 @@ public class ReservationRepository implements IReservationRepository {
     public void delete(String phone) {
 
         jdbc.update("DELETE FROM reservations WHERE phone =" + phone + "");
+    }
+
+    @Override
+    public Reservation login(String phone) {
+        ArrayList<Reservation> reservations = readAllPhone(phone);
+        for(Reservation r : reservations) {
+            if(r.getPhone().equals(phone)) {
+                return r;
+            }
+        }
+
+        return null;
     }
 
 }

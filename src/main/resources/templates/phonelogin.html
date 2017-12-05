@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <link rel="stylesheet"
+          href="C:\Users\Bruger\Documents\GitHub\Nyboders-Koekken\src\main\resources\static\style.css"
+          th:href="@{style.css}"/>
+
+    <title>slet</title>
+
+</head>
+<body>
+<img src="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg" style="width:250px;height:200px;"/>
+
+
+<div>
+    <form th:object="${res}" th:action="@{/phonelogin}" method="post">
+        <h1>indtast telefon</h1>
+
+        <div align="center">
+
+            <input th:field="*{phone}" type="text" phone="phone" id="phone" placeholder="phone" required="true" size="30" />
+        </div>
+
+        <div align="center">
+            <div>
+                <input type="submit" value="SUBMIT"/>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+</body>
+</html>

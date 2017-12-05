@@ -7,10 +7,11 @@
 <body>
 <h1>Delete Reservation</h1>
 
+
 <form th:action="@{/reservationdelete}" method="post" th:object="${reservation}">
 
     <input th:field="*{name}" readonly="readonly" />
-    <input type="text" th:field="*{phone}" />
+    <input th:field="*{phone}" readonly="readonly" />
     <input th:field="*{guest}" readonly="readonly" />
     <input th:field="*{date}" readonly="readonly" />
     <input th:field="*{time}" readonly="readonly" />

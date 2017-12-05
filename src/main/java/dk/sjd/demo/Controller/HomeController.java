@@ -191,9 +191,31 @@ public class HomeController {
     }
 
 
+
+    @RequestMapping(value = {"/phonelogin"}, method = RequestMethod.GET)
+    public String phonelogin(Model model) {
+        model.addAttribute("res", new Reservation());
+        return "phonelogin";
+    }
+
+    @RequestMapping(value = "/phonelogin", method = RequestMethod.POST)
+    public String phonelogin(@ModelAttribute Reservation r, Model model) {
+        if (reserRepo.login(r.getPhone()) != null) {
+            Reservation ress = reserRepo.login(r.getPhone());
+            reservations = reserRepo.readAllPhone(r.getPhone());
+            model.addAttribute("r", reservations);
+            return "reservationcollection";
+        }
+
+        return "phonelogin";
+    }
+
+
+
     @GetMapping("/reservationdelete")
     public String deleteReservation(@RequestParam("phone") String phone, Model model){
-        model.addAttribute("reservation", reserRepo.readAll());
+        Reservation r = reserRepo.readSpecific(phone);
+        model.addAttribute("reservation", r);
         return "reservationdelete";
     }
 
@@ -202,6 +224,5 @@ public class HomeController {
         reserRepo.delete(reservation.getPhone());
         return "/index";
     }
-
 }
 
