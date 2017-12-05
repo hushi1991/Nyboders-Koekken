@@ -10,11 +10,11 @@ public interface IReservationRepository extends ICrudRepository {
 
 public void create (Reservation reservation);
 
-public void delete (String phone);
+public void delete (int id);
 
 public Reservation login(String phone);
 
 public ArrayList<Reservation> readAllPhone(String phone);
 
-public Reservation readSpecific(String phone);
+public Reservation readSpecific(int id);
 }

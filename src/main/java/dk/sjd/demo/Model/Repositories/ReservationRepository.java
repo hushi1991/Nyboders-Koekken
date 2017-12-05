@@ -46,8 +46,8 @@ public class ReservationRepository implements IReservationRepository {
 
 
     @Override
-    public Reservation readSpecific(String phone) {
-        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM reservations WHERE phone =" + phone + "");
+    public Reservation readSpecific(int id) {
+        SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM reservations WHERE id =" + id + "");
 
         if (sqlRowSet.next()){
             return new Reservation(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getString("phone"), sqlRowSet.getInt("guest"), sqlRowSet.getDate("date").toLocalDate(), sqlRowSet.getString("time"), sqlRowSet.getString("request"));
@@ -64,9 +64,9 @@ public class ReservationRepository implements IReservationRepository {
     }
 
     @Override
-    public void delete(String phone) {
+    public void delete(int id) {
 
-        jdbc.update("DELETE FROM reservations WHERE phone =" + phone + "");
+        jdbc.update("DELETE FROM reservations WHERE id =" + id + "");
     }
 
     @Override

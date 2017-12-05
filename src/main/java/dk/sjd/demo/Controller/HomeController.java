@@ -213,15 +213,15 @@ public class HomeController {
 
 
     @GetMapping("/reservationdelete")
-    public String deleteReservation(@RequestParam("phone") String phone, Model model){
-        Reservation r = reserRepo.readSpecific(phone);
+    public String deleteReservation(@RequestParam("id") int id, Model model){
+        Reservation r = reserRepo.readSpecific(id);
         model.addAttribute("reservation", r);
         return "reservationdelete";
     }
 
     @PostMapping("reservationdelete")
     public String reservationDelete(@ModelAttribute Reservation reservation){
-        reserRepo.delete(reservation.getPhone());
+        reserRepo.delete(reservation.getId());
         return "/index";
     }
 }

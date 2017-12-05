@@ -27,7 +27,7 @@
         <td th:text="${reservation.guest}"/>
         <td th:text="${reservation.date}"/>
         <td th:text="${reservation.request}"/>
-        <td><a th:href="@{/reservationdelete(phone=${reservation.phone})}" class="btn" id="red" >slet Reservationer</a>
+        <td><a th:href="@{/reservationdelete(id=${reservation.id})}" class="btn" id="red" >slet Reservationer</a>
 
         </td>
 
