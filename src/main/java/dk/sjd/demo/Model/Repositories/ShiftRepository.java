@@ -6,7 +6,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Repository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 @Repository
 public class ShiftRepository implements IShiftRepository {
@@ -62,6 +65,28 @@ public class ShiftRepository implements IShiftRepository {
 
     @Override
     public void create(Shift s) {
+        String time1 = s.getShiftStart();
+        String time2 = s.getShiftEnd();
+        long difference = 0;
+        long diffmin = 0;
+        long diffhour = 0;
+        try {
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        Date date1 = format.parse(time1);
+        Date date2 = format.parse(time2);
+        difference = date2.getTime() - date1.getTime();
+        diffmin = difference / (60 * 1000) % 60;
+        diffhour = difference / (60 * 60 * 1000) % 24;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        Integer i = (int) (long) diffhour;
+        System.out.println(diffhour);
+        System.out.println(diffmin % 60);
+
+
+
+
         jdbc.update("INSERT INTO shifts (name, date, shiftStart, shiftEnd) VALUES('" + s.getName() +"', '"+ s.getDate() +"', '"+ s.getShiftStart() +"', '"+ s.getShiftEnd() +"')");
     }
 
