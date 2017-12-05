@@ -10,7 +10,6 @@
 <form th:action="@{/employee}" method="post" th:object="${employee}">
 
     <input type="text" th:field="*{name}" placeholder="Navn"/>
-    <input type="text" th:field="*{totalHours}" placeholder="Antal Timer"/>
 
     <input type="submit" value="Send" />
 </form>

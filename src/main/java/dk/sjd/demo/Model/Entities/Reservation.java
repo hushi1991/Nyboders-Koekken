@@ -13,14 +13,14 @@ public class Reservation {
     private String phone;
     private int guest;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date date;
-    private Time time;
+    private LocalDate date;
+    private String time;
     private String request;
 
     public Reservation() {
     }
 
-    public Reservation(int id, String name, String phone, int guest, Date date, Time time, String request) {
+    public Reservation(int id, String name, String phone, int guest, LocalDate date, String time, String request) {
         this.id = id;
         this.name = name;
         this.phone = phone;
@@ -62,19 +62,19 @@ public class Reservation {
         this.guest = guest;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

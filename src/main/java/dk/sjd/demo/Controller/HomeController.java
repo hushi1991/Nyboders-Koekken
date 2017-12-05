@@ -82,7 +82,6 @@ public class HomeController {
 
     @GetMapping("/shiftcreate")
     public String create(Model model){
-
         model.addAttribute("shift", new Shift());
         return "shiftcreate";
     }
@@ -183,24 +182,26 @@ public class HomeController {
 
     //Den indtastede information til medarbejderen gemmes og bliver gemt i DB.
     @PostMapping("employee")
-    public String createEmployee(@ModelAttribute Employee employee){
+    public String createEmployee(@ModelAttribute Employee employee, Model model){
         employRepo.createEmployee(employee);
-        return "redirect:/";
+
+        employees = employRepo.readAll();
+        model.addAttribute("e", employees);
+        return "adminemployee";
     }
 
 
-/*
     @GetMapping("/reservationdelete")
     public String deleteReservation(@RequestParam("phone") String phone, Model model){
-        model.addAttribute("reservation", reserrepo.readAll(phone));
+        model.addAttribute("reservation", reserRepo.readAll());
         return "reservationdelete";
     }
 
     @PostMapping("reservationdelete")
     public String reservationDelete(@ModelAttribute Reservation reservation){
-        reserrepo.delete(reservation.getPhone());
+        reserRepo.delete(reservation.getPhone());
         return "/index";
     }
-*/
+
 }
 

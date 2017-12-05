@@ -90,4 +90,5 @@ public class ShiftRepository implements IShiftRepository {
         jdbc.update("INSERT INTO shifts (name, date, shiftStart, shiftEnd) VALUES('" + s.getName() +"', '"+ s.getDate() +"', '"+ s.getShiftStart() +"', '"+ s.getShiftEnd() +"')");
     }
 
+
 }
