@@ -183,9 +183,12 @@ public class HomeController {
 
     //Den indtastede information til medarbejderen gemmes og bliver gemt i DB.
     @PostMapping("employee")
-    public String createEmployee(@ModelAttribute Employee employee){
+    public String createEmployee(@ModelAttribute Employee employee, Model model){
         employRepo.createEmployee(employee);
-        return "redirect:/";
+
+        employees = employRepo.readAll();
+        model.addAttribute("e", employees);
+        return "adminemployee";
     }
 
 
