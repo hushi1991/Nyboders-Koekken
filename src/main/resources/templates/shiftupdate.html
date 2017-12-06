@@ -18,9 +18,9 @@
     <input type="text" th:field="*{id}" th:text="${id}" />
     <select>
         <option value="">Select Name</option>
-        <option th:each="employee : ${e}"
-                th:value="${employee.name}"
-                th:text="${employee.name}"></option>
+        <option th:each="shift : ${s}"
+                th:value="${shift.name}"
+                th:text="${shift.name}"></option>
     </select>
     <input type="date" th:field="*{date}"  />
     <input type="time" th:field="*{shiftStart}"  />

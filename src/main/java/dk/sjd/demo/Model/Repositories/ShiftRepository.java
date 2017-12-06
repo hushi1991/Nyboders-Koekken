@@ -1,5 +1,6 @@
 package dk.sjd.demo.Model.Repositories;
 
+import dk.sjd.demo.Model.Entities.Employee;
 import dk.sjd.demo.Model.Entities.Shift;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Delete Employee</title>
+    <link rel="stylesheet" type="text/css"
+          href="../../static/styles.css"
+          th:href="@{styles.css}"/>
+</head>
+<body>
+<h1>Delete Employee</h1>
+
+<form th:action="@{/employeedelete}" method="post" th:object="${employee}">
+    <input th:field="*{id}" th:text="${id}" readonly="readonly"/>
+    <input th:field="*{name}" readonly="readonly" />
+    <input th:field="*{totalHours}" readonly="readonly" />
+
+
+    <input type="submit" value="Delete" />
+
+
+</form>
+
+</body>
+</html>

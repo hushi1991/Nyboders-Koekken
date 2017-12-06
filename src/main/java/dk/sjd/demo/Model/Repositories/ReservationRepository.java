@@ -81,5 +81,12 @@ public class ReservationRepository implements IReservationRepository {
         return null;
     }
 
+    @Override
+    public void updateReservation(Reservation reservation){
+
+        jdbc.update("UPDATE reservations set name = '"+ reservation.getName() +"', phone = '"+ reservation.getPhone() +"', guest = '"+ reservation.getGuest() +"', date = '"+ reservation.getDate() +"', time = '"+ reservation.getTime() +"', request = '" + reservation.getRequest() + "' WHERE id =" + reservation.getId() +"");
+    }
+
+
 }
 

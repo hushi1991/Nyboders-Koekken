@@ -64,14 +64,6 @@ public class HomeController {
         return "login";
     }
 
-    //Her bliver man ledt til siden hvor man som medarbejder kan se alle de aktive reservationer
-    @GetMapping("/reservationemployee")
-    public String resEmployee(Model model) {
-        reservations = reserRepo.readAll();
-        model.addAttribute("r", reservations);
-        return "reservationemployee";
-    }
-
     //Her vises adminshift siden med en specific medarbejders vagter baseret på navnet.
     @GetMapping("/adminshift")
     public String admin(@RequestParam("name") String name, Model model){
@@ -113,17 +105,19 @@ public class HomeController {
     //På shiftupdate for admin kan alle informationer rettes i.
     @RequestMapping(value = {"/shiftupdate"}, method = RequestMethod.GET)
     public String shiftUpdate(@RequestParam("id") int id, Model model) {
-        employees = employRepo.readAll();
-        model.addAttribute("e", employees);
+        shifts = shiftRepo.readAll();
+        model.addAttribute("s", shifts);
         model.addAttribute("shift", shiftRepo.readSpecific(id));
         return "shiftupdate";
     }
 
     //Den valgte vagt bliver opdateret med de ønskede informationer
     @PostMapping("shiftupdate")
-    public String updateShift(@ModelAttribute Shift shift){
+    public String updateShift(@ModelAttribute Shift shift, Model model){
         shiftRepo.updateShift(shift);
-        return "redirect:/";
+        employees = employRepo.readAll();
+        model.addAttribute("e", employees);
+        return "adminemployee";
     }
 
     //Her vises de specifikke vagter for den ønskede medarbejder baseret på navn for den alm. bruger
@@ -159,6 +153,27 @@ public class HomeController {
         return "index";
     }
 
+    //Her bliver man ledt til siden hvor man som medarbejder kan se alle de aktive reservationer
+    @GetMapping("/reservationemployee")
+    public String resEmployee(Model model) {
+        reservations = reserRepo.readAll();
+        model.addAttribute("r", reservations);
+        return "reservationemployee";
+    }
+
+    @RequestMapping(value = {"/reservationupdate"}, method = RequestMethod.GET)
+    public String reservationUpdate(@RequestParam("id") int id, Model model) {
+        model.addAttribute("reservation", reserRepo.readSpecific(id));
+        return "reservationupdate";
+    }
+
+    //Den valgte vagt bliver opdateret med de ønskede informationer
+    @PostMapping("reservationupdate")
+    public String updateReservation(@ModelAttribute Reservation reservation){
+        reserRepo.updateReservation(reservation);
+        return "/login";
+    }
+
     //Siden hvor reservationer kan skabes
     @RequestMapping(value = {"/reservation"}, method = RequestMethod.GET)
     public String reservation(Model model) {
@@ -178,6 +193,22 @@ public class HomeController {
     public String employee(Model model) {
         model.addAttribute("employee", new Employee());
         return "employeecreate";
+    }
+
+    @GetMapping("/employeedelete")
+    public String deleteEmployee(@RequestParam("id") int id, Model model){
+        Employee e = employRepo.readSpecificEmployee(id);
+        model.addAttribute("employee", e);
+        return "employeedelete";
+    }
+
+    //Den valgte medarbejder bliver slettet
+    @PostMapping("/employeedelete")
+    public String employeeDelete(Employee employee, Model model){
+        employRepo.deleteEmployee(employee.getId());
+        employees = employRepo.readAll();
+        model.addAttribute("e", employees);
+        return "adminemployee";
     }
 
     //Den indtastede information til medarbejderen gemmes og bliver gemt i DB.

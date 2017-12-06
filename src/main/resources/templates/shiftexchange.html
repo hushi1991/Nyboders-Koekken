@@ -11,25 +11,25 @@
 </head>
 
 <body>
-    <h1> Vagtbytte</h1>
+<h1> Vagtbytte</h1>
 
 
-    <form th:action="@{/shiftexchange}" method="post" th:object="${shift}">
-        <input type="text" th:field="*{id}" th:text="${id}" readonly="readonly" />
-            <select>
-                <option value="">Select Name</option>
-                <option th:each="shift : ${s}"
-                        th:value="${shift.name}"
-                        th:text="${shift.name}"></option>
-            </select>
-        <input type="date" th:field="*{date}" readonly="readonly" />
-        <input type="time" th:field="*{shiftStart}" readonly="readonly" />
-        <input type="time" th:field="*{shiftEnd}" readonly="readonly" />
-        <input type="text" th:field="*{hours}" readonly="readonly" />
+<form th:action="@{/shiftexchange}" method="post" th:object="${shift}">
+    <input type="text" th:field="*{id}" th:text="${id}" readonly="readonly" />
+    <select>
+        <option value="">Select Name</option>
+        <option th:each="shift : ${s}"
+                th:value="${shift.name}"
+                th:text="${shift.name}"></option>
+    </select>
+    <input type="date" th:field="*{date}" readonly="readonly" />
+    <input type="time" th:field="*{shiftStart}" readonly="readonly" />
+    <input type="time" th:field="*{shiftEnd}" readonly="readonly" />
+    <input type="text" th:field="*{hours}" readonly="readonly" />
 
-        <input type="submit" value="Byt Vagt" />
+    <input type="submit" value="Byt Vagt" />
 
 
-    </form>
+</form>
 </body>
 </html>

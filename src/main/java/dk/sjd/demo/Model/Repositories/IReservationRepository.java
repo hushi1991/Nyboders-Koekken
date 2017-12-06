@@ -17,4 +17,6 @@ public Reservation login(String phone);
 public ArrayList<Reservation> readAllPhone(String phone);
 
 public Reservation readSpecific(int id);
+
+    public void updateReservation(Reservation reservation);
 }
