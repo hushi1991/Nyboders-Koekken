@@ -1,27 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Delete reservation</title>
 
+    <link rel="stylesheet"
+          href="C:\Users\Bruger\Documents\GitHub\Nyboders-Koekken\src\main\resources\static\style.css"
+          th:href="@{style.css}"/>
+
+    <title>Reservation</title>
 </head>
 <body>
-<h1>Delete Reservation</h1>
+
+<h1>Slet Reservation</h1>
 
 
 <form th:action="@{/reservationdelete}" method="post" th:object="${reservation}">
 
-    <input th:field="*{id}" readonly="readonly" />
-    <input th:field="*{name}" readonly="readonly" />
-    <input th:field="*{phone}" readonly="readonly" />
-    <input th:field="*{guest}" readonly="readonly" />
-    <input th:field="*{date}" readonly="readonly" />
-    <input th:field="*{time}" readonly="readonly" />
-    <input th:field="*{request}" readonly="readonly" />
+    <table align="center">
+        <tr>
+            <td>ID</td>
+            <td>Navn</td>
+            <td>Telefon</td>
+            <td>Antal Gæster</td>
+            <td>Dato</td>
+            <td>Tid</td>
+            <td>Særlig Bemærkninger</td>
+        </tr>
 
+        <tr>
 
-    <input type="submit" value="Delete" />
-
-
+            <td>
+                <input th:field="*{id}" readonly="readonly" />
+            </td>
+            <td>
+                <input th:field="*{name}" readonly="readonly" />
+            </td>
+            <td>
+                <input th:field="*{phone}" readonly="readonly" />
+            </td>
+            <td>
+                <input th:field="*{guest}" readonly="readonly" />
+            </td>
+            <td>
+                <input th:field="*{date}" readonly="readonly" />
+            </td>
+            <td>
+                <input th:field="*{time}" readonly="readonly" />
+            </td>
+            <td>
+                <input th:field="*{request}" readonly="readonly" />
+            </td>
+            <td>
+                <input type="submit" value="Slet Reservation" class="btn" id="red" />
+            </td>
+        </tr>
+    </table>
 </form>
 
 </body>

@@ -61,6 +61,28 @@ public class ShiftRepository implements IShiftRepository {
     @Override
     public void updateShift(Shift shift){
 
+        String time1 = shift.getShiftStart();
+        String time2 = shift.getShiftEnd();
+        long difference = 0;
+        long diffmin = 0;
+        long diffhour = 0;
+
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+            Date date1 = format.parse(time1);
+            Date date2 = format.parse(time2);
+            difference = date2.getTime() - date1.getTime();
+            diffmin = difference / (60 * 1000) % 60;
+            diffhour = difference / (60 * 60 * 1000) % 24;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        Integer i = (int) (long) diffhour;
+        System.out.println(diffhour);
+        System.out.println(diffmin % 60);
+
+        shift.setHours(i);
+
         jdbc.update("UPDATE shifts set name = '"+ shift.getName() +"', date = '"+ shift.getDate() +"', shiftStart = '"+ shift.getShiftStart() +"', shiftEnd = '"+ shift.getShiftEnd() +"', hours = '"+ shift.getHours() +"' WHERE id =" + shift.getId() +"");
     }
 
@@ -71,6 +93,7 @@ public class ShiftRepository implements IShiftRepository {
         long difference = 0;
         long diffmin = 0;
         long diffhour = 0;
+
         try {
         SimpleDateFormat format = new SimpleDateFormat("HH:mm");
         Date date1 = format.parse(time1);

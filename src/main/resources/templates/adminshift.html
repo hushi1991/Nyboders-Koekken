@@ -2,14 +2,16 @@
 <html lang="en">
 <head>
 
+    <link rel="stylesheet"
+          href="C:\Users\Bruger\Documents\GitHub\Nyboders-Koekken\src\main\resources\static\style.css"
+          th:href="@{style.css}"/>
+
     <title>Vagter</title>
-    <link rel="stylesheet" type="text/css"
-          href="../../static/styles.css"
-          th:href="@{styles.css}"/>
+
 </head>
 <body>
 <h1>Vagtplan</h1>
-<table>
+<table align="center">
     <tr>
         <td>ID</td>
         <td>Name</td>
@@ -17,6 +19,7 @@
         <td>ShiftStart</td>
         <td>ShiftEnd</td>
         <td>Hours</td>
+        <td>Muligheder</td>
 
     </tr>
     <tr th:each="shift: ${s}">

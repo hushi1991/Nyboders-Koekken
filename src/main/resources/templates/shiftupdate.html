@@ -15,7 +15,7 @@
 
 
 <form th:action="@{/shiftupdate}" method="post" th:object="${shift}">
-    <input type="text" th:field="*{id}" th:text="${id}" />
+    <input type="text" th:field="*{id}" th:text="${id}" readonly="readonly" />
     <select>
         <option value="">Select Name</option>
         <option th:each="shift : ${s}"
@@ -25,7 +25,6 @@
     <input type="date" th:field="*{date}"  />
     <input type="time" th:field="*{shiftStart}"  />
     <input type="time" th:field="*{shiftEnd}" />
-    <input type="text" th:field="*{hours}" />
 
     <input type="submit" value="Update Shift" />
 
