@@ -195,6 +195,18 @@ public class HomeController {
         return "employeecreate";
     }
 
+
+    //Den indtastede information til medarbejderen gemmes og bliver gemt i DB.
+    @PostMapping("employee")
+    public String createEmployee(@ModelAttribute Employee employee, Model model){
+        employRepo.createEmployee(employee);
+
+        employees = employRepo.readAll();
+        model.addAttribute("e", employees);
+        return "adminemployee";
+    }
+
+
     @GetMapping("/employeedelete")
     public String deleteEmployee(@RequestParam("id") int id, Model model){
         Employee e = employRepo.readSpecificEmployee(id);
@@ -206,16 +218,6 @@ public class HomeController {
     @PostMapping("/employeedelete")
     public String employeeDelete(Employee employee, Model model){
         employRepo.deleteEmployee(employee.getId());
-        employees = employRepo.readAll();
-        model.addAttribute("e", employees);
-        return "adminemployee";
-    }
-
-    //Den indtastede information til medarbejderen gemmes og bliver gemt i DB.
-    @PostMapping("employee")
-    public String createEmployee(@ModelAttribute Employee employee, Model model){
-        employRepo.createEmployee(employee);
-
         employees = employRepo.readAll();
         model.addAttribute("e", employees);
         return "adminemployee";
