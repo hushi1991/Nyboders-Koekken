@@ -15,6 +15,8 @@ import java.util.Date;
 @Repository
 public class ShiftRepository implements IShiftRepository {
 
+    private int ii;
+
     @Autowired
     private JdbcTemplate jdbc;
 
@@ -105,8 +107,9 @@ public class ShiftRepository implements IShiftRepository {
             System.out.println(e);
         }
         Integer i = (int) (long) diffhour;
-        System.out.println(diffhour);
-        System.out.println(diffmin % 60);
+        if(diffmin % 60 == 30){
+        }
+        System.out.println(ii);
 
         s.setHours(i);
 
