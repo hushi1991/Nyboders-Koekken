@@ -83,6 +83,8 @@ public class ShiftRepository implements IShiftRepository {
 
         shift.setHours(i);
 
+
+
         jdbc.update("UPDATE shifts set name = '"+ shift.getName() +"', date = '"+ shift.getDate() +"', shiftStart = '"+ shift.getShiftStart() +"', shiftEnd = '"+ shift.getShiftEnd() +"', hours = '"+ shift.getHours() +"' WHERE id =" + shift.getId() +"");
     }
 
