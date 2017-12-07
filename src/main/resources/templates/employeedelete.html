@@ -12,7 +12,6 @@
 <form th:action="@{/employeedelete}" method="post" th:object="${employee}">
     <input th:field="*{id}" th:text="${id}" readonly="readonly"/>
     <input th:field="*{name}" readonly="readonly" />
-    <input th:field="*{totalHours}" readonly="readonly" />
 
 
     <input type="submit" value="Delete" />

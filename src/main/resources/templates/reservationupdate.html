@@ -6,26 +6,54 @@
           href="C:\Users\Bruger\Documents\GitHub\Nyboders-Koekken\src\main\resources\static\style.css"
           th:href="@{style.css}"/>
 
-    <title>VagtÆndring </title>
+    <title>Reservation </title>
 
 </head>
 
 <body>
-<h1> VagtÆndring</h1>
-
+<h1> Opdater Reservation</h1>
 
 <form th:action="@{/reservationupdate}" method="post" th:object="${reservation}">
-    <input type="text" th:field="*{id}" th:text="${id}" readonly="readonly" />
-    <input type="text" th:field="*{name}" />
-    <input type="text" th:field="*{phone}" />
-    <input type="text" th:field="*{guest}" />
-    <input type="date" th:field="*{date}"  />
-    <input type="time" th:field="*{time}"  />
-    <input type="text" th:field="*{request}" />
 
-    <input type="submit" value="Update Reservation" />
+<table align="center">
+    <tr>
+        <td>ID</td>
+        <td>Navn</td>
+        <td>Telefon</td>
+        <td>Antal Gæster</td>
+        <td>Dato</td>
+        <td>Tid</td>
+        <td>Særlig Bemærkninger</td>
+    </tr>
 
-
+    <tr>
+        <td>
+            <input type="text" th:field="*{id}" th:text="${id}" readonly="readonly" />
+        </td>
+        <td>
+            <input type="text" th:field="*{name}" />
+        </td>
+        <td>
+            <input type="text" th:field="*{phone}" />
+        </td>
+        <td>
+            <input type="text" th:field="*{guest}" />
+        </td>
+        <td>
+            <input type="date" th:field="*{date}"  />
+        </td>
+        <td>
+            <input type="time" th:field="*{time}"  />
+        </td>
+        <td>
+            <input type="text" th:field="*{request}" />
+        </td>
+        <td>
+            <input type="submit" value="Opdater Reservation" class="btn" id="green"/>
+        </td>
+    </tr>
+</table>
 </form>
+
 </body>
 </html>

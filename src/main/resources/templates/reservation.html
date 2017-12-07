@@ -2,28 +2,58 @@
 <html lang="en">
 <head>
 
-    <title>reservation</title>
+    <link rel="stylesheet"
+          href="C:\Users\Bruger\Documents\GitHub\Nyboders-Koekken\src\main\resources\static\style.css"
+          th:href="@{style.css}"/>
+
+    <title>Reservation</title>
 </head>
 <body>
 
-<h1>reserver her</h1>
+<h1>Opret din reservation her</h1>
 
 <form action="/create" th:action="@{/reservation}" method="post" th:object="${reservation}">
 
-    <input type="text" th:field="*{name}" placeholder="name"/>
-    <input type="text" th:field="*{phone}" placeholder="phone"/>
-    <input type="text" th:field="*{guest}" placeholder="Antal gæster"/>
-    <input type="date" th:field="*{date}" />
-    <input type="time" th:field="*{time}" />
-    <input type="text" th:field="*{request}" placeholder="Særlige Bemærkninger"/>
+    <table align="center">
+        <tr>
+            <td>Navn</td>
+            <td>Telefon</td>
+            <td>Antal Gæster</td>
+            <td>Dato</td>
+            <td>Tid</td>
+            <td>Særlig Bemærkninger</td>
+        </tr>
 
-    <input type="submit" value="Opret" />
-
-
+        <tr>
+            <td>
+                <input type="text" th:field="*{name}" placeholder="Navn"/>
+            </td>
+            <td>
+                <input type="text" th:field="*{phone}" placeholder="Telefon nr."/>
+            </td>
+            <td>
+                <input type="text" th:field="*{guest}" placeholder="Antal gæster"/>
+            </td>
+            <td>
+                <input type="date" th:field="*{date}" />
+            </td>
+            <td>
+                <input type="time" th:field="*{time}" />
+            </td>
+            <td>
+                <input type="text" th:field="*{request}" placeholder="Særlige Bemærkninger"/>
+            </td>
+            <td>
+                <input type="submit" value="Opret Reservation" class="btn" id="green" />
+            </td>
+        </tr>
+    </table>
 </form>
 
+
+
 <form>
-    <a href="/phonelogin" class="btn" >slet reservation</a>
+    <a href="/phonelogin" class="btn" id="red" >Slet Reservation</a>
 </form>
 
 </body>
