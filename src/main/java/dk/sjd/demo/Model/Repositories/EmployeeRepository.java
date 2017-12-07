@@ -21,7 +21,11 @@ public class EmployeeRepository implements IEmployeeRepository {
         ArrayList<Employee> employees = new ArrayList<>();
 
         while(sqlRowSet.next()) {
-            employees.add(new Employee(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getInt("totalHours")));
+
+            SqlRowSet sqlRowSet1 = jdbc.queryForRowSet("SELECT sum(hours) AS totalHours FROM shifts WHERE name='" + sqlRowSet.getString("name") + "'");
+            while(sqlRowSet1.next()){
+                employees.add(new Employee(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet1.getInt("totalHours")));
+            }
         }
 
         return employees;

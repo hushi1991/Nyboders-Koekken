@@ -44,6 +44,7 @@ public class ShiftRepository implements IShiftRepository {
         return shifts;
     }
 
+
     @Override
     public void delete(int id) {
 

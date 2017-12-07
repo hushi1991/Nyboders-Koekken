@@ -16,7 +16,7 @@
 
 <form th:action="@{/shiftexchange}" method="post" th:object="${shift}">
     <input type="text" th:field="*{id}" th:text="${id}" readonly="readonly" />
-    <select>
+    <select th:field="${shift.name}">
         <option value="">Select Name</option>
         <option th:each="shift : ${s}"
                 th:value="${shift.name}"

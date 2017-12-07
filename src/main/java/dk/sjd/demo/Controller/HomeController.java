@@ -79,9 +79,11 @@ public class HomeController {
     }
 
     @PostMapping("/shiftcreate")
-    public String createShift(@ModelAttribute Shift s){
+    public String createShift(@ModelAttribute Shift s, Model model){
         shiftRepo.create(s);
-        return "redirect:/";
+        employees = employRepo.readAll();
+        model.addAttribute("e", employees);
+        return "adminemployee";
     }
 
     //Her vises en specific vagt baseret på vagtens id så man kan tage stilling til om den skal slettes
