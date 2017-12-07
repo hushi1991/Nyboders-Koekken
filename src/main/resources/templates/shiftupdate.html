@@ -6,17 +6,17 @@
           href="C:\Users\Bruger\Documents\GitHub\Nyboders-Koekken\src\main\resources\static\style.css"
           th:href="@{style.css}"/>
 
-    <title>VagtÆndring </title>
+    <title>Vagt</title>
 
 </head>
 
 <body>
-<h1> VagtÆndring</h1>
+<h1> Vagt Ændring</h1>
 
 
 <form th:action="@{/shiftupdate}" method="post" th:object="${shift}">
     <input type="text" th:field="*{id}" th:text="${id}" readonly="readonly" />
-    <select>
+    <select th:field="${shift.name}">
         <option value="">Select Name</option>
         <option th:each="shift : ${s}"
                 th:value="${shift.name}"
