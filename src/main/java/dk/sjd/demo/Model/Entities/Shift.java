@@ -14,13 +14,13 @@ public class Shift {
     private LocalDate date;
     private String shiftStart;
     private String shiftEnd;
-    private int hours;
+    private double hours;
 
 
     public Shift() {
     }
 
-    public Shift(int id, String name, LocalDate date, String shiftStart, String shiftEnd, int hours) {
+    public Shift(int id, String name, LocalDate date, String shiftStart, String shiftEnd, double hours) {
         this.id = id;
         this.name = name;
         this.date = date;
@@ -69,11 +69,11 @@ public class Shift {
         this.shiftEnd = shiftEnd;
     }
 
-    public int getHours() {
+    public double getHours() {
         return hours;
     }
 
-    public void setHours(int hours) {
+    public void setHours(double hours) {
         this.hours = hours;
     }
 

@@ -15,7 +15,6 @@ import java.util.Date;
 @Repository
 public class ShiftRepository implements IShiftRepository {
 
-    private int ii;
 
     @Autowired
     private JdbcTemplate jdbc;
@@ -26,7 +25,7 @@ public class ShiftRepository implements IShiftRepository {
         ArrayList<Shift> shifts = new ArrayList<>();
 
         while(sqlRowSet.next()) {
-            shifts.add(new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date").toLocalDate(), sqlRowSet.getString("shiftStart"), sqlRowSet.getString("shiftEnd"), sqlRowSet.getInt("hours")));
+            shifts.add(new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date").toLocalDate(), sqlRowSet.getString("shiftStart"), sqlRowSet.getString("shiftEnd"), sqlRowSet.getDouble("hours")));
         }
 
         return shifts;
@@ -38,7 +37,7 @@ public class ShiftRepository implements IShiftRepository {
         ArrayList<Shift> shifts = new ArrayList<>();
 
         while(sqlRowSet.next()) {
-            shifts.add(new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date").toLocalDate(), sqlRowSet.getString("shiftStart"), sqlRowSet.getString("shiftEnd"), sqlRowSet.getInt("hours")));
+            shifts.add(new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date").toLocalDate(), sqlRowSet.getString("shiftStart"), sqlRowSet.getString("shiftEnd"), sqlRowSet.getDouble("hours")));
         }
 
         return shifts;
@@ -56,7 +55,7 @@ public class ShiftRepository implements IShiftRepository {
         SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM shifts WHERE id =" + id + "");
 
         if (sqlRowSet.next()){
-            return new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date").toLocalDate(), sqlRowSet.getString("shiftStart"), sqlRowSet.getString("shiftEnd"), sqlRowSet.getInt("hours"));
+            return new Shift(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet.getDate("date").toLocalDate(), sqlRowSet.getString("shiftStart"), sqlRowSet.getString("shiftEnd"), sqlRowSet.getDouble("hours"));
         }
         return new Shift();
     }
@@ -80,11 +79,13 @@ public class ShiftRepository implements IShiftRepository {
         } catch (Exception e) {
             System.out.println(e);
         }
-        Integer i = (int) (long) diffhour;
+        double d = (double) (long) diffhour;
+        double dd = (double) (long) diffmin / 60;
         System.out.println(diffhour);
         System.out.println(diffmin % 60);
+        System.out.println(dd / 60);
 
-        shift.setHours(i);
+        shift.setHours(d + dd);
 
 
 
@@ -109,12 +110,11 @@ public class ShiftRepository implements IShiftRepository {
         } catch (Exception e) {
             System.out.println(e);
         }
-        Integer i = (int) (long) diffhour;
+        double d = (double) (long) diffhour;
         if(diffmin % 60 == 30){
         }
-        System.out.println(ii);
 
-        s.setHours(i);
+        s.setHours(d);
 
 
 

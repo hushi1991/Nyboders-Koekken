@@ -4,12 +4,12 @@ public class Employee {
 
     private int id;
     private String name;
-    private int totalHours;
+    private double totalHours;
 
     public Employee() {
     }
 
-    public Employee(int id, String name, int totalHours) {
+    public Employee(int id, String name, double totalHours) {
         this.id = id;
         this.name = name;
         this.totalHours = totalHours;
@@ -31,11 +31,11 @@ public class Employee {
         this.name = name;
     }
 
-    public int getTotalHours() {
+    public double getTotalHours() {
         return totalHours;
     }
 
-    public void setTotalHours(int totalHours) {
+    public void setTotalHours(double totalHours) {
         this.totalHours = totalHours;
     }
 }
