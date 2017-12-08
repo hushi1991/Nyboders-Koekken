@@ -1,20 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Title</title>
-</head>
-<body background="http://nyboderskoekken.dk/wp-content/uploads/2017/11/DSC1416.jpg">
 
-<h1>OPRET MEDARBEJDER</h1>
+<head>
+    <link href="//fonts.googleapis.com/css?family=Nunito" rel="stylesheet"/>
+    <link rel="stylesheet"
+          href="C:\Users\Bruger\Documents\GitHub\Nyboders-Koekken\src\main\resources\static\style.css"
+          th:href="@{style.css}"/>
+    <link rel="icon" href="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg"/>
+
+    <title>Nyboders Køkken</title>
+</head>
+<body>
+<img src="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg" style="width:200px;height:150px;"/>
+
+<h1>Opret Medarbejder</h1>
 
 <form th:action="@{/employee}" method="post" th:object="${employee}">
 
-    <input type="text" th:field="*{name}" placeholder="Navn"/>
-
-    <input type="submit" value="Send" />
+    <table align="center">
+        <tr>
+            <td>Navn</td>
+            <td>Valgmuligheder</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" th:field="*{name}" placeholder="Navn"/>
+            </td>
+            <td>
+                <input type="submit" value="Opret Medarbejder" class="btn" id="green" />
+            </td>
+        </tr>
+    </table>
 </form>
-
-
-
 </body>
 </html>

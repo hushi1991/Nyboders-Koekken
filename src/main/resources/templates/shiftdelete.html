@@ -1,24 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Delete shift</title>
-    <link rel="stylesheet" type="text/css"
-          href="../../static/styles.css"
-          th:href="@{styles.css}"/>
+    <link rel="stylesheet"
+          href="C:\Users\Bruger\Documents\GitHub\Nyboders-Koekken\src\main\resources\static\style.css"
+          th:href="@{style.css}"/>
+    <link rel="icon" href="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg"/>
+
+    <title>Nyboders Køkken</title>
+
 </head>
 <body>
-<h1>Delete Shift</h1>
+<img src="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg" style="width:200px;height:150px;"/>
+<h1>Slet Vagt</h1>
 
 <form th:action="@{/shiftdelete}" method="post" th:object="${shift}">
-    <input th:field="*{id}" th:text="${id}" readonly="readonly"/>
-    <input th:field="*{name}" readonly="readonly" />
-    <input th:field="*{date}" readonly="readonly" />
-    <input th:field="*{shiftStart}" readonly="readonly" />
-    <input th:field="*{shiftEnd}" readonly="readonly" />
-    <input th:field="*{hours}" readonly="readonly" />
 
+    <table align="center">
+        <tr>
+            <td>ID</td>
+            <td>Navn</td>
+            <td>Dato</td>
+            <td>Vagt Start</td>
+            <td>Vagt Slut</td>
+            <td>Timer</td>
+            <td>Valgmuligheder</td>
+        </tr>
+        <tr>
+            <td>
+                <input th:field="*{id}" th:text="${id}" readonly="readonly"/>
+            </td>
+            <td>
+                <input th:field="*{name}" readonly="readonly" />
+            </td>
+            <td>
+                <input th:field="*{date}" readonly="readonly" />
+            </td>
+            <td>
+                <input th:field="*{shiftStart}" readonly="readonly" />
+            </td>
+            <td>
+                <input th:field="*{shiftEnd}" readonly="readonly" />
+            </td>
+            <td>
+                <input th:field="*{hours}" readonly="readonly" />
+            </td>
+            <td>
+                <input type="submit" value="Slet Vagt" class="btn" id="red" />
+            </td>
+        </tr>
+    </table>
 
-    <input type="submit" value="Delete" />
 
 
 </form>

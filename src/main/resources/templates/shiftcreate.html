@@ -1,23 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Add Shift to DB</title>
-    <link rel="stylesheet" type="text/css"
-          href="../../static/styles.css"
-          th:href="@{styles.css}"/>
+    <link rel="stylesheet"
+          href="C:\Users\Bruger\Documents\GitHub\Nyboders-Koekken\src\main\resources\static\style.css"
+          th:href="@{style.css}"/>
+    <link rel="icon" href="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg"/>
+
+    <title>Nyboders Køkken</title>
+
 </head>
 <body>
-<h1>Add Shift to DB</h1>
+<img src="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg" style="width:200px;height:150px;"/>
+<h1>Opret Vagt</h1>
 
 <form action="/create" th:action="@{/shiftcreate}" method="post" th:object="${shift}">
 
-    <input type="text" th:field="*{name}" />
-    <input type="date" th:field="*{date}" />
-    <input type="time" th:field="*{shiftStart}" />
-    <input type="time" th:field="*{shiftEnd}" />
+    <table align="center">
+        <tr>
+            <td>Navn</td>
+            <td>Dato</td>
+            <td>Vagt Start</td>
+            <td>Vagt Slut</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" th:field="*{name}" />
+            </td>
+            <td>
+                <input type="date" th:field="*{date}" />
+            </td>
+            <td>
+                <input type="time" th:field="*{shiftStart}" />
+            </td>
+            <td>
+                <input type="time" th:field="*{shiftEnd}" />
+            </td>
+            <td>
+                <input type="submit" value="Opret Vagt" class="btn" id="green" />
+            </td>
+        </tr>
+    </table>
 
-
-    <input type="submit" value="Opret" />
 
 </form>
 

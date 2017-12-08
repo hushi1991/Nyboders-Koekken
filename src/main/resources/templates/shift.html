@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet"
+          href="C:\Users\Bruger\Documents\GitHub\Nyboders-Koekken\src\main\resources\static\style.css"
+          th:href="@{style.css}"/>
+    <link rel="icon" href="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg"/>
 
-    <title>Vagter</title>
-    <link rel="stylesheet" type="text/css"
-          href="../../static/styles.css"
-          th:href="@{styles.css}"/>
+    <title>Nyboders Køkken</title>
+
 </head>
 <body>
+<img src="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg" style="width:200px;height:150px;"/>
 <h1>Vagtplan</h1>
-<table>
+
+<table align="center">
     <tr>
         <td>ID</td>
-        <td>Name</td>
+        <td>Navn</td>
         <td>Dato</td>
-        <td>ShiftStart</td>
-        <td>ShiftEnd</td>
-        <td>Hours</td>
+        <td>Vagt Start</td>
+        <td>Vagt Slut</td>
+        <td>Timer</td>
 
     </tr>
     <tr th:each="shift: ${s}">
@@ -27,12 +31,12 @@
             <td th:text="${shift.shiftEnd}"/>
             <td th:text="${shift.hours}"/>
         <td>
-            <a th:href="@{/shiftexchange(id=${shift.id})}" class="btn" id="">BYT VAGT</a>
+            <a th:href="@{/shiftexchange(id=${shift.id})}" class="btn" id="">Byt Vagt</a>
         </td>
 
     </tr>
 </table>
-<a href="/login" class="btn" id="blue">RETURN</a>
+<a href="/login" class="btn" id="blue">Tilbage</a>
 
 </body>
 </html>

@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Index</title>
-    <link rel="stylesheet" type="text/css"
-          href="C:\Users\Hushi\IdeaProjects\TeknikObligatorisk\src\main\resources\static\style.css"
+
+    <link rel="stylesheet"
+          href="C:\Users\Bruger\Documents\GitHub\Nyboders-Koekken\src\main\resources\static\style.css"
           th:href="@{style.css}"/>
+    <link rel="icon" href="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg"/>
+
+
+
+    <title>Nyboders Køkken</title>
 </head>
 <body>
+<img src="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg" style="width:200px;height:150px;"/>
 
 <h1>Medarbejdere</h1>
 
@@ -15,7 +21,7 @@
         <td>ID</td>
         <td>Navn</td>
         <td>Antal timer</td>
-        <td>Options</td>
+        <td>Muligheder</td>
     </tr>
     <tr th:each="employee: ${e}">
         <td th:text="${employee.id}"/>

@@ -5,8 +5,9 @@
     <link rel="stylesheet"
           href="C:\Users\Bruger\Documents\GitHub\Nyboders-Koekken\src\main\resources\static\style.css"
           th:href="@{style.css}"/>
+    <link rel="icon" href="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg"/>
 
-    <title>slet</title>
+    <title>Nyboders Køkken</title>
 
 </head>
 <body>
@@ -15,16 +16,16 @@
 
 <div>
     <form th:object="${res}" th:action="@{/phonelogin}" method="post">
-        <h1>indtast telefon</h1>
+        <h1>Indtast Telefon Nummer</h1>
 
         <div align="center">
 
-            <input th:field="*{phone}" type="text" phone="phone" id="phone" placeholder="phone" required="true" size="30" />
+            <input th:field="*{phone}" type="text" phone="phone" id="phone" placeholder="Telefon Nummer" required="true" size="30" />
         </div>
 
         <div align="center">
             <div>
-                <input type="submit" value="SUBMIT"/>
+                <input type="submit" value="Bekræft"/>
             </div>
         </div>
     </form>

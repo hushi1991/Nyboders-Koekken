@@ -5,30 +5,54 @@
     <link rel="stylesheet"
           href="C:\Users\Bruger\Documents\GitHub\Nyboders-Koekken\src\main\resources\static\style.css"
           th:href="@{style.css}"/>
+    <link rel="icon" href="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg"/>
 
-    <title>Vagt</title>
+    <title>Nyboders Køkken</title>
 
 </head>
 
 <body>
+<img src="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg" style="width:200px;height:150px;"/>
 <h1> Vagt Ændring</h1>
 
 
 <form th:action="@{/shiftupdate}" method="post" th:object="${shift}">
-    <input type="text" th:field="*{id}" th:text="${id}" readonly="readonly" />
-    <select th:field="${shift.name}">
-        <option value="">Select Name</option>
-        <option th:each="shift : ${s}"
-                th:value="${shift.name}"
-                th:text="${shift.name}"></option>
-    </select>
-    <input type="date" th:field="*{date}"  />
-    <input type="time" th:field="*{shiftStart}"  />
-    <input type="time" th:field="*{shiftEnd}" />
 
-    <input type="submit" value="Update Shift" />
+    <table align="center">
+        <tr>
+            <td>ID</td>
+            <td>Navn</td>
+            <td>Dato</td>
+            <td>Vagt Start</td>
+            <td>Vagt Slut</td>
+        </tr>
 
-
+        <tr>
+            <td>
+                <input type="text" th:field="*{id}" th:text="${id}" readonly="readonly" />
+            </td>
+            <td>
+                <select th:field="${shift.name}">
+                    <option value="">Select Name</option>
+                    <option th:each="shift : ${s}"
+                            th:value="${shift.name}"
+                            th:text="${shift.name}"></option>
+                </select>
+            </td>
+            <td>
+                <input type="date" th:field="*{date}"  />
+            </td>
+            <td>
+                <input type="time" th:field="*{shiftStart}"  />
+            </td>
+            <td>
+                <input type="time" th:field="*{shiftEnd}" />
+            </td>
+            <td>
+                <input type="submit" value="Opdater Vagt" class="btn" id="green" />
+            </td>
+        </tr>
+    </table>
 </form>
 </body>
 </html>

@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Delete Employee</title>
-    <link rel="stylesheet" type="text/css"
-          href="../../static/styles.css"
-          th:href="@{styles.css}"/>
+    <link rel="stylesheet"
+          href="C:\Users\Bruger\Documents\GitHub\Nyboders-Koekken\src\main\resources\static\style.css"
+          th:href="@{style.css}"/>
+    <link rel="icon" href="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg"/>
+
+    <title>Nyboders Køkken</title>
+
 </head>
 <body>
-<h1>Delete Employee</h1>
+<img src="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg" style="width:200px;height:150px;"/>
+<h1>Slet Medarbejder</h1>
 
 <form th:action="@{/employeedelete}" method="post" th:object="${employee}">
-    <input th:field="*{id}" th:text="${id}" readonly="readonly"/>
-    <input th:field="*{name}" readonly="readonly" />
 
-
-    <input type="submit" value="Delete" />
+    <table align="center">
+        <tr>
+            <td>ID</td>
+            <td>Navn</td>
+        </tr>
+        <tr>
+            <td>
+                <input th:field="*{id}" th:text="${id}" readonly="readonly"/>
+            </td>
+            <td>
+                <input th:field="*{name}" readonly="readonly" />
+            </td>
+            <td>
+                <input type="submit" value="Slet Medarbejder" class="btn" id="red" />
+            </td>
+        </tr>
+    </table>
 
 
 </form>

@@ -5,29 +5,58 @@
     <link rel="stylesheet"
           href="C:\Users\Bruger\Documents\GitHub\Nyboders-Koekken\src\main\resources\static\style.css"
           th:href="@{style.css}"/>
+    <link rel="icon" href="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg"/>
 
-    <title>Vagtbytte </title>
+    <title>Nyboders Køkken</title>
 
 </head>
 
 <body>
+<img src="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg" style="width:200px;height:150px;"/>
 <h1> Vagtbytte</h1>
 
 
 <form th:action="@{/shiftexchange}" method="post" th:object="${shift}">
-    <input type="text" th:field="*{id}" th:text="${id}" readonly="readonly" />
-    <select th:field="${shift.name}">
-        <option value="">Select Name</option>
-        <option th:each="shift : ${s}"
-                th:value="${shift.name}"
-                th:text="${shift.name}"></option>
-    </select>
-    <input type="date" th:field="*{date}" readonly="readonly" />
-    <input type="time" th:field="*{shiftStart}" readonly="readonly" />
-    <input type="time" th:field="*{shiftEnd}" readonly="readonly" />
-    <input type="text" th:field="*{hours}" readonly="readonly" />
 
-    <input type="submit" value="Byt Vagt" />
+    <table align="center">
+        <tr>
+            <td>ID</td>
+            <td>Navn</td>
+            <td>Dato</td>
+            <td>Vagt Start</td>
+            <td>Vagt Slut</td>
+            <td>Antal Timer</td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" th:field="*{id}" th:text="${id}" readonly="readonly" />
+            </td>
+            <td>
+                <select th:field="${shift.name}">
+                    <option value="">Vælg Medarbejder</option>
+                    <option th:each="shift : ${s}"
+                            th:value="${shift.name}"
+                            th:text="${shift.name}"></option>
+                </select>
+            </td>
+            <td>
+                <input type="date" th:field="*{date}" readonly="readonly" />
+            </td>
+            <td>
+                <input type="time" th:field="*{shiftStart}" readonly="readonly" />
+            </td>
+            <td>
+                <input type="time" th:field="*{shiftEnd}" readonly="readonly" />
+            </td>
+            <td>
+                <input type="text" th:field="*{hours}" readonly="readonly" />
+            </td>
+            <td>
+                <input type="submit" value="Byt Vagt" class="btn" id="green" />
+            </td>
+        </tr>
+    </table>
+
 
 
 </form>
