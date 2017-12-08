@@ -32,7 +32,6 @@ td, th {
 }
 
 h1,h2,h3 {
-    font-family: 'Nunito', sans-serif;
     text-align: center;
 }
 
@@ -87,4 +86,3 @@ img {
     display: block;
     margin: 0 auto;
 }
-
