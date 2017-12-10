@@ -148,6 +148,22 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @RequestMapping(value = {"/shifttime"}, method = RequestMethod.GET)
+    public String shifttime(@RequestParam("id") int id, Model model) {
+        //En arrayliste med alle shifts bliver uploadet for at man kan vælge det navn der skal overtage vagten
+        shifts = shiftRepo.readAll();
+        model.addAttribute("s", shifts);
+        model.addAttribute("shift", shiftRepo.readSpecific(id));
+        return "shifttime";
+    }
+
+    //Den valgte vagt bliver opdateret med det udvalgte navn
+    @PostMapping("shifttime")
+    public String timeShift(@ModelAttribute Shift shift){
+        shiftRepo.updateShift(shift);
+        return "redirect:/";
+    }
+
     //Metoden for at finde vores index(Startside) og hvilke getters der leder derhen
     @RequestMapping(value = {"","/","index"}, method = RequestMethod.GET)
     public String index()

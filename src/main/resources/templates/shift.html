@@ -32,6 +32,7 @@
             <td th:text="${shift.hours}"/>
         <td>
             <a th:href="@{/shiftexchange(id=${shift.id})}" class="btn" id="">Byt Vagt</a>
+            <a th:href="@{/shifttime(id=${shift.id})}" class="btn" id="">Indtast Tid</a>
         </td>
 
     </tr>
