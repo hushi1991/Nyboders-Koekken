@@ -96,3 +96,7 @@ img {
     display: block;
     margin: 0 auto;
 }
+img.img2{
+    padding:1px;
+    border:8px solid #0B610B;
+}
