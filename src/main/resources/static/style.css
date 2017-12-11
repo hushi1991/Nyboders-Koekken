@@ -1,7 +1,7 @@
 table {
     border-collapse: collapse;
     text-align: center;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Oswald', sans-serif;
     /* width: 80%;*/
 }
 
@@ -9,7 +9,7 @@ td, th {
     border: 1px solid ;
     text-align: left;
     padding: 5px 8px 5px 8px;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Oswald', sans-serif;
 }
 
 .btn {
@@ -28,11 +28,13 @@ td, th {
     margin-bottom: 5px;
     position: relative;
     top: 50%;
+    font-family: 'Oswald', sans-serif;
 
 }
 
 h1,h2,h3 {
     text-align: center;
+    font-family: 'Oswald', sans-serif;
 }
 
 textarea {
@@ -62,10 +64,12 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: white;
+    font-family: 'Oswald', sans-serif;
 }
 
 li {
     float: left;
+    font-family: 'Oswald', sans-serif;
 }
 
 li a {
@@ -74,6 +78,7 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    font-family: 'Oswald', sans-serif;
 }
 
 
