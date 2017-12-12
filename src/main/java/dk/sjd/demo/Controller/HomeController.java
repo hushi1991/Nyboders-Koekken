@@ -16,6 +16,7 @@ import java.util.ArrayList;
 @Controller
 public class HomeController {
 
+    //Arraylister og Repositories oprettes udenfor metoder så hele HomeControlleren kan kalde på den og ikke kun metoder
     //ArrayLists der indeholder de forskellige entities i programmet så de kan bruges i metoderne
     ArrayList<User> users = new ArrayList<>();
     ArrayList<Employee> employees = new ArrayList<>();
@@ -34,6 +35,13 @@ public class HomeController {
 
     @Autowired
     IReservationRepository reserRepo = new ReservationRepository();
+
+    //Metoden for at finde vores index(Startside) og hvilke getters der leder derhen
+    @RequestMapping(value = {"","/","index"}, method = RequestMethod.GET)
+    public String index()
+    {
+        return "index";
+    }
 
     //Silas, Joachim & David
     //Login metode-start. Her bliver man ledt til via GET valuen og der bliver skabt en User-entitiy til brug
@@ -72,15 +80,18 @@ public class HomeController {
         return "adminshift";
     }
 
+    //Metoden hvor shifts kan blive lavet af admin.
     @GetMapping("/shiftcreate")
     public String create(Model model){
         model.addAttribute("shift", new Shift());
         return "shiftcreate";
     }
 
+    //Postmapping for skabelsen af shifts. admin bliver returneret til medarbejdersiden(for admins)
     @PostMapping("/shiftcreate")
     public String createShift(@ModelAttribute Shift s, Model model){
         shiftRepo.create(s);
+        //Disse tre linjer går igen nogle steder. De sørger for at adminemployee siden kan tilgås.
         employees = employRepo.readAll();
         model.addAttribute("e", employees);
         return "adminemployee";
@@ -94,7 +105,7 @@ public class HomeController {
         return "shiftdelete";
     }
 
-    //Den valgte vagt bliver slettet
+    //Den valgte vagt bliver slettet. Returnering af admin til adminemployee
     @PostMapping("/shiftdelete")
     public String deleteshift(@RequestParam(name = "id") int shift, Model model){
         shiftRepo.delete(shift);
@@ -148,30 +159,24 @@ public class HomeController {
         return "redirect:/";
     }
 
+    //Den metode som de alm medarbejdere bruger til at ændre tidspunkter skulle disse ændres under vagten
+    //Det er kun tidspunkterne der kan ændres
     @RequestMapping(value = {"/shifttime"}, method = RequestMethod.GET)
     public String shifttime(@RequestParam("id") int id, Model model) {
-        //En arrayliste med alle shifts bliver uploadet for at man kan vælge det navn der skal overtage vagten
         shifts = shiftRepo.readAll();
         model.addAttribute("s", shifts);
         model.addAttribute("shift", shiftRepo.readSpecific(id));
         return "shifttime";
     }
 
-    //Den valgte vagt bliver opdateret med det udvalgte navn
+    //Den valgte vagt bliver opdateret med de nye tider
     @PostMapping("shifttime")
     public String timeShift(@ModelAttribute Shift shift){
         shiftRepo.updateShift(shift);
         return "redirect:/";
     }
 
-    //Metoden for at finde vores index(Startside) og hvilke getters der leder derhen
-    @RequestMapping(value = {"","/","index"}, method = RequestMethod.GET)
-    public String index()
-    {
-        return "index";
-    }
-
-    //Her bliver man ledt til siden hvor man som medarbejder kan se alle de aktive reservationer
+    //Her bliver man ledt til siden hvor man som medarbejder & admin kan se alle de aktive reservationer
     @GetMapping("/reservationemployee")
     public String resEmployee(Model model) {
         reservations = reserRepo.readAll();
@@ -179,17 +184,21 @@ public class HomeController {
         return "reservationemployee";
     }
 
+    //Reservations update funktionen som ansatte kan tilgå for at ændre reservationerne
     @RequestMapping(value = {"/reservationupdate"}, method = RequestMethod.GET)
     public String reservationUpdate(@RequestParam("id") int id, Model model) {
         model.addAttribute("reservation", reserRepo.readSpecific(id));
         return "reservationupdate";
     }
 
-    //Den valgte vagt bliver opdateret med de ønskede informationer
+    //Den valgte reservation bliver opdateret med de ønskede informationer
     @PostMapping("reservationupdate")
-    public String updateReservation(@ModelAttribute Reservation reservation){
+    public String updateReservation(@ModelAttribute Reservation reservation, Model model){
         reserRepo.updateReservation(reservation);
-        return "/login";
+        //Man bliver returneret til listen af alle aktive reservationer
+        reservations = reserRepo.readAll();
+        model.addAttribute("r", reservations);
+        return "reservationemployee";
     }
 
     //Siden hvor reservationer kan skabes
@@ -218,13 +227,12 @@ public class HomeController {
     @PostMapping("employee")
     public String createEmployee(@ModelAttribute Employee employee, Model model){
         employRepo.createEmployee(employee);
-
         employees = employRepo.readAll();
         model.addAttribute("e", employees);
         return "adminemployee";
     }
 
-
+    //I denne metode kan man slette en bestemt medarbejder baseret på id
     @GetMapping("/employeedelete")
     public String deleteEmployee(@RequestParam("id") int id, Model model){
         Employee e = employRepo.readSpecificEmployee(id);
@@ -241,14 +249,14 @@ public class HomeController {
         return "adminemployee";
     }
 
-
-
+    //En anderledes login metode. Tjekker for et matchene tlf nr i DB.
     @RequestMapping(value = {"/phonelogin"}, method = RequestMethod.GET)
     public String phonelogin(Model model) {
         model.addAttribute("res", new Reservation());
         return "phonelogin";
     }
 
+    //Hvis tlf nr passer i DB vises de aktive reservationer der matcher tlf nr.
     @RequestMapping(value = "/phonelogin", method = RequestMethod.POST)
     public String phonelogin(@ModelAttribute Reservation r, Model model) {
         if (reserRepo.login(r.getPhone()) != null) {
@@ -257,12 +265,11 @@ public class HomeController {
             model.addAttribute("r", reservations);
             return "reservationcollection";
         }
-
+        //Hvis nummeret ikke passer, eller der findes ingen match, så bliver man på loginsiden
         return "phonelogin";
     }
 
-
-
+    //Slet en reservation baseret på id. Både kunder og ansatte har denne funktion.
     @GetMapping("/reservationdelete")
     public String deleteReservation(@RequestParam("id") int id, Model model){
         Reservation r = reserRepo.readSpecific(id);
@@ -270,10 +277,10 @@ public class HomeController {
         return "reservationdelete";
     }
 
+    //Reservationen bliver slettet
     @PostMapping("reservationdelete")
     public String reservationDelete(@ModelAttribute Reservation reservation){
         reserRepo.delete(reservation.getId());
         return "/index";
     }
 }
-

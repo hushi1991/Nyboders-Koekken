@@ -8,6 +8,7 @@ import java.util.Date;
 
 public class Reservation {
 
+    //fields
     private int id;
     private String name;
     private String phone;
@@ -17,6 +18,7 @@ public class Reservation {
     private String time;
     private String request;
 
+    //Constructors
     public Reservation() {
     }
 
@@ -30,6 +32,7 @@ public class Reservation {
         this.request = request;
     }
 
+    //Getters & Setters
     public int getId() {
         return id;
     }

@@ -2,11 +2,13 @@ package dk.sjd.demo.Model.Entities;
 
 public class User {
 
+    //fields
     private int id;
     private String username;
     private String password;
     private boolean admin;
 
+    //constructors
     public User() {
     }
 
@@ -17,6 +19,7 @@ public class User {
         this.admin = admin;
     }
 
+    //getters & setters
     public int getId() {
         return id;
     }

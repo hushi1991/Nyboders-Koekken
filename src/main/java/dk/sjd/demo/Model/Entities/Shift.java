@@ -8,6 +8,7 @@ import java.util.Date;
 
 public class Shift {
 
+    //fields
     private int id;
     private String name;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -16,7 +17,7 @@ public class Shift {
     private String shiftEnd;
     private double hours;
 
-
+    //constructors
     public Shift() {
     }
 
@@ -29,6 +30,7 @@ public class Shift {
         this.hours = hours;
     }
 
+    //Getters & Setters
     public int getId() {
         return id;
     }
@@ -77,6 +79,7 @@ public class Shift {
         this.hours = hours;
     }
 
+    //toString metode for muligt print
     @Override
     public String toString() {
         return "Shift{" +

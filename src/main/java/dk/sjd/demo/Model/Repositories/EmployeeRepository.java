@@ -12,14 +12,20 @@ import java.util.ArrayList;
 @Repository
 public class EmployeeRepository implements IEmployeeRepository {
 
+    //fields
     @Autowired
     private JdbcTemplate jdbc;
 
+    //metoder
+    //readAll laver en ArrayList med alle de objekter af den korrekte type der hentes fra DB, og returnere denne.
     @Override
     public ArrayList<Employee> readAll() {
+        //Alt fra tabellen "employees" vælges og sættes i et SqlRowSet
         SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM  employees");
         ArrayList<Employee> employees = new ArrayList<>();
 
+        //Så længe der er noget i SqlRowSettet bliver der fyldt på ArrayListen. Særligt bliver der i denne while-loop udregnet summen af 'hours'
+        //fra "shifts" tabellen og indlæst i Employee-feltet 'totalhours' baseret på deres navn.
         while(sqlRowSet.next()) {
 
             SqlRowSet sqlRowSet1 = jdbc.queryForRowSet("SELECT sum(hours) AS totalHours FROM shifts WHERE name='" + sqlRowSet.getString("name") + "'");
@@ -31,19 +37,19 @@ public class EmployeeRepository implements IEmployeeRepository {
         return employees;
     }
 
+    //Det Employee objekt der gives i parametret bliver skabt i DB.
     @Override
     public void createEmployee(Employee employee){
         jdbc.update("INSERT INTO employees(name, totalHours) VALUES('" + employee.getName() +"', '"+ employee.getTotalHours() +"')");
     }
 
+    //Det valgte id findes og fjernes samt den Employee det tilhører fra DB
     @Override
     public void deleteEmployee(int id) {
-
-
-
         jdbc.update("DELETE FROM employees WHERE id=" + id + "");
     }
 
+    //En specifik Employee bliver fundet og returneret baseret på det id der gives i parametret
     @Override
     public Employee readSpecificEmployee(int id) {
         SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM employees WHERE id =" + id + "");
@@ -53,13 +59,4 @@ public class EmployeeRepository implements IEmployeeRepository {
         }
         return new Employee();
     }
-
-    /*
-    public void calculateHours(Employee employee){
-
-        jdbc.update("SELECT sum(hours) FROM shifts WHERE name='Joachim Stougaard'");
-    }
-
-    */
-
 }

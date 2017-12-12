@@ -1,11 +1,14 @@
 package dk.sjd.demo.Model.Entities;
 
+//Medarbejder klassen. Denne indeholder de informationer vi har brug for vores medarbejdere har
 public class Employee {
 
+    //fields
     private int id;
     private String name;
     private double totalHours;
 
+    //constructors
     public Employee() {
     }
 
@@ -15,6 +18,7 @@ public class Employee {
         this.totalHours = totalHours;
     }
 
+    //Getters & Setters
     public int getId() {
         return id;
     }
