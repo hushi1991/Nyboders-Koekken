@@ -60,67 +60,48 @@ public class ShiftRepository implements IShiftRepository {
         return new Shift();
     }
 
-    @Override
-    public void updateShift(Shift shift){
+    private double hoursCalculator(Shift s){
 
-        String time1 = shift.getShiftStart();
-        String time2 = shift.getShiftEnd();
-        long difference = 0;
+        String time1 = s.getShiftStart();
+        String time2 = s.getShiftEnd();
+
+        long difference;
         long diffmin = 0;
         long diffhour = 0;
 
         try {
+
             SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+
             Date date1 = format.parse(time1);
             Date date2 = format.parse(time2);
+
             difference = date2.getTime() - date1.getTime();
             diffmin = difference / (60 * 1000) % 60;
             diffhour = difference / (60 * 60 * 1000) % 24;
         } catch (Exception e) {
             System.out.println(e);
         }
+
         double d = (double) (long) diffhour;
         double dd = (double) (long) diffmin / 60;
-        System.out.println(diffhour);
-        System.out.println(diffmin % 60);
-        System.out.println(dd / 60);
 
-        shift.setHours(d + dd);
+        return(d + dd);
+    }
 
+    @Override
+    public void updateShift(Shift shift){
 
+        shift.setHours(hoursCalculator(shift));
 
         jdbc.update("UPDATE shifts set name = '"+ shift.getName() +"', date = '"+ shift.getDate() +"', shiftStart = '"+ shift.getShiftStart() +"', shiftEnd = '"+ shift.getShiftEnd() +"', hours = '"+ shift.getHours() +"' WHERE id =" + shift.getId() +"");
     }
 
     @Override
-    public void create(Shift s) {
-        String time1 = s.getShiftStart();
-        String time2 = s.getShiftEnd();
-        long difference = 0;
-        long diffmin = 0;
-        long diffhour = 0;
+    public void create(Shift shift) {
 
-        try {
-        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
-        Date date1 = format.parse(time1);
-        Date date2 = format.parse(time2);
-        difference = date2.getTime() - date1.getTime();
-        diffmin = difference / (60 * 1000) % 60;
-        diffhour = difference / (60 * 60 * 1000) % 24;
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        double d = (double) (long) diffhour;
-        if(diffmin % 60 == 30){
-        }
+        shift.setHours(hoursCalculator(shift));
 
-        s.setHours(d);
-
-
-
-
-        jdbc.update("INSERT INTO shifts (name, date, shiftStart, shiftEnd, hours) VALUES('" + s.getName() +"', '"+ s.getDate() +"', '"+ s.getShiftStart() +"', '"+ s.getShiftEnd() +"', '"+ s.getHours() +"')");
+        jdbc.update("INSERT INTO shifts (name, date, shiftStart, shiftEnd, hours) VALUES('" + shift.getName() +"', '"+ shift.getDate() +"', '"+ shift.getShiftStart() +"', '"+ shift.getShiftEnd() +"', '"+ shift.getHours() +"')");
     }
-
-
 }

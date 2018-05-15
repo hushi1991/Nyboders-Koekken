@@ -16,14 +16,14 @@
 
 
 <div>
-    <form th:object="${user}" th:action="@{/login}" method="post">
+    <form th:action="@{/login}" method="post" th:object="${user}" >
         <h1>LOGIN</h1>
 
         <div align="center">
-            <input type="text" name="username" id="username" placeholder="Username" required="true" size="30" value="admin"/>
+            <input type="text" name="username" id="username" placeholder="Username" required="true" size="30"/>
         </div>
         <div align="center">
-            <input type="password" name="password" id="password" placeholder="Password" required="true" size="30" value="1234"/>
+            <input type="password" name="password" id="password" placeholder="Password" required="true" size="30"/>
         </div>
 
         <div align="center">

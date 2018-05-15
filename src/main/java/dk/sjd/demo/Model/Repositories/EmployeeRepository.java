@@ -29,6 +29,7 @@ public class EmployeeRepository implements IEmployeeRepository {
         while(sqlRowSet.next()) {
 
             SqlRowSet sqlRowSet1 = jdbc.queryForRowSet("SELECT sum(hours) AS totalHours FROM shifts WHERE name='" + sqlRowSet.getString("name") + "'");
+
             while(sqlRowSet1.next()){
                 employees.add(new Employee(sqlRowSet.getInt("id"), sqlRowSet.getString("name"), sqlRowSet1.getDouble("totalHours")));
             }
@@ -50,6 +51,8 @@ public class EmployeeRepository implements IEmployeeRepository {
     }
 
     //En specifik Employee bliver fundet og returneret baseret på det id der gives i parametret
+
+
     @Override
     public Employee readSpecificEmployee(int id) {
         SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM employees WHERE id =" + id + "");

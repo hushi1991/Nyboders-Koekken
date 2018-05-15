@@ -2,7 +2,6 @@ table {
     border-collapse: collapse;
     text-align: center;
     font-family: 'Oswald', sans-serif;
-    /* width: 80%;*/
 }
 
 td, th {
@@ -21,7 +20,7 @@ td, th {
     text-decoration: none;
     display: inline-block;
     font-size: 12px;
-    border-radius: 5px; /* https://www.w3schools.com/css/css3_borders.asp */
+    border-radius: 5px;
     box-shadow: 1px 1px 1px #888888;
     -webkit-transition-duration: 0.1s; /* Safari */
     transition-duration: 0.1s;

@@ -14,7 +14,7 @@
 <img src="http://nyboderskoekken.dk/wp-content/uploads/2017/06/NK-logo_350.jpg" style="width:200px;height:150px;"/>
 <h1>Opret Vagt</h1>
 
-<form action="/create" th:action="@{/shiftcreate}" method="post" th:object="${shift}">
+<form th:action="@{/shiftcreate}" method="post" th:object="${shift}">
 
     <table align="center">
         <tr>
@@ -25,6 +25,7 @@
         </tr>
         <tr>
             <td>
+
                 <input type="text" th:field="*{name}" />
             </td>
             <td>

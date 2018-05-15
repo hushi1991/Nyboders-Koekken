@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 //Silas, Joachim & David
 @Controller
@@ -45,7 +46,8 @@ public class HomeController {
 
     //Silas, Joachim & David
     //Login metode-start. Her bliver man ledt til via GET valuen og der bliver skabt en User-entitiy til brug
-    @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
+    // @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
+    @GetMapping ("/login")
     public String loginIndex(Model model) {
         model.addAttribute("user", new User());
         return "login";
@@ -53,7 +55,8 @@ public class HomeController {
 
     //Silas, Joachim & David
     //Login metode-slut. Her bliver brugeren, baseret på login oplysninger, ført videre til admin eller alm. bruger sider.
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    //@RequestMapping(value = "/login", method = RequestMethod.POST)
+    @PostMapping ("/login")
     public String login(@ModelAttribute User user, Model model) {
         if(userRepo.login(user.getUsername(), user.getPassword()) != null) {
             User u = userRepo.login(user.getUsername(), user.getPassword());
@@ -74,10 +77,19 @@ public class HomeController {
 
     //Her vises adminshift siden med en specific medarbejders vagter baseret på navnet.
     @GetMapping("/adminshift")
-    public String admin(@RequestParam("name") String name, Model model){
+    public String admin(@ModelAttribute("name") String name, Model model){
         shifts = shiftRepo.read(name);
         model.addAttribute("s", shifts);
         return "adminshift";
+    }
+    //Her vises en specific vagt baseret på vagtens id så man kan tage stilling til om den skal opdateres
+    //På shiftupdate for admin kan alle informationer rettes i.
+    @GetMapping ("/shiftupdate")
+    public String shiftUpdate(@ModelAttribute("id") int id, Model model) {
+        shifts = shiftRepo.readAll();
+        model.addAttribute("s", shifts);
+        model.addAttribute("shift", shiftRepo.readSpecific(id));
+        return "shiftupdate";
     }
 
     //Metoden hvor shifts kan blive lavet af admin.
@@ -99,7 +111,7 @@ public class HomeController {
 
     //Her vises en specific vagt baseret på vagtens id så man kan tage stilling til om den skal slettes
     @GetMapping("/shiftdelete")
-    public String delete(@RequestParam("id") int id, Model model){
+    public String delete(@ModelAttribute("id") int id, Model model){
         Shift s = shiftRepo.readSpecific(id);
         model.addAttribute("shift", s);
         return "shiftdelete";
@@ -107,25 +119,17 @@ public class HomeController {
 
     //Den valgte vagt bliver slettet. Returnering af admin til adminemployee
     @PostMapping("/shiftdelete")
-    public String deleteshift(@RequestParam(name = "id") int shift, Model model){
-        shiftRepo.delete(shift);
+    public String deleteshift(@ModelAttribute("id") int id, Model model){
+        shiftRepo.delete(id);
+
         employees = employRepo.readAll();
         model.addAttribute("e", employees);
         return "adminemployee";
     }
 
-    //Her vises en specific vagt baseret på vagtens id så man kan tage stilling til om den skal opdateres
-    //På shiftupdate for admin kan alle informationer rettes i.
-    @RequestMapping(value = {"/shiftupdate"}, method = RequestMethod.GET)
-    public String shiftUpdate(@RequestParam("id") int id, Model model) {
-        shifts = shiftRepo.readAll();
-        model.addAttribute("s", shifts);
-        model.addAttribute("shift", shiftRepo.readSpecific(id));
-        return "shiftupdate";
-    }
 
     //Den valgte vagt bliver opdateret med de ønskede informationer
-    @PostMapping("shiftupdate")
+    @PostMapping("/shiftupdate")
     public String updateShift(@ModelAttribute Shift shift, Model model){
         shiftRepo.updateShift(shift);
         employees = employRepo.readAll();
@@ -135,7 +139,7 @@ public class HomeController {
 
     //Her vises de specifikke vagter for den ønskede medarbejder baseret på navn for den alm. bruger
     @GetMapping("/shift")
-    public String shift(@RequestParam("name") String name, Model model){
+    public String shift(@ModelAttribute("name") String name, Model model){
         shifts = shiftRepo.read(name);
         model.addAttribute("s", shifts);
         return "shift";
@@ -143,8 +147,9 @@ public class HomeController {
 
     //Her vises en specific vagt baseret på vagtens id så man kan tage stilling til om den skal byttes
     //Det er kun navnet der kan ændres for den alm. bruger
-    @RequestMapping(value = {"/shiftexchange"}, method = RequestMethod.GET)
-    public String shiftexchange(@RequestParam("id") int id, Model model) {
+    //@RequestMapping(value = {"/shiftexchange"}, method = RequestMethod.GET)
+    @GetMapping ("/shiftexchange")
+    public String shiftexchange(@ModelAttribute("id") int id, Model model) {
         //En arrayliste med alle shifts bliver uploadet for at man kan vælge det navn der skal overtage vagten
         shifts = shiftRepo.readAll();
         model.addAttribute("s", shifts);
@@ -161,8 +166,9 @@ public class HomeController {
 
     //Den metode som de alm medarbejdere bruger til at ændre tidspunkter skulle disse ændres under vagten
     //Det er kun tidspunkterne der kan ændres
-    @RequestMapping(value = {"/shifttime"}, method = RequestMethod.GET)
-    public String shifttime(@RequestParam("id") int id, Model model) {
+    // @RequestMapping(value = {"/shifttime"}, method = RequestMethod.GET)
+    @GetMapping ("/shifttime")
+    public String shifttime(@ModelAttribute("id") int id, Model model) {
         shifts = shiftRepo.readAll();
         model.addAttribute("s", shifts);
         model.addAttribute("shift", shiftRepo.readSpecific(id));
@@ -170,7 +176,7 @@ public class HomeController {
     }
 
     //Den valgte vagt bliver opdateret med de nye tider
-    @PostMapping("shifttime")
+    @PostMapping("/shifttime")
     public String timeShift(@ModelAttribute Shift shift){
         shiftRepo.updateShift(shift);
         return "redirect:/";
@@ -185,14 +191,15 @@ public class HomeController {
     }
 
     //Reservations update funktionen som ansatte kan tilgå for at ændre reservationerne
-    @RequestMapping(value = {"/reservationupdate"}, method = RequestMethod.GET)
-    public String reservationUpdate(@RequestParam("id") int id, Model model) {
+    // @RequestMapping(value = {"/reservationupdate"}, method = RequestMethod.GET)
+    @GetMapping ("/reservationupdate")
+    public String reservationUpdate(@ModelAttribute("id") int id, Model model) {
         model.addAttribute("reservation", reserRepo.readSpecific(id));
         return "reservationupdate";
     }
 
     //Den valgte reservation bliver opdateret med de ønskede informationer
-    @PostMapping("reservationupdate")
+    @PostMapping("/reservationupdate")
     public String updateReservation(@ModelAttribute Reservation reservation, Model model){
         reserRepo.updateReservation(reservation);
         //Man bliver returneret til listen af alle aktive reservationer
@@ -202,21 +209,23 @@ public class HomeController {
     }
 
     //Siden hvor reservationer kan skabes
-    @RequestMapping(value = {"/reservation"}, method = RequestMethod.GET)
+    // @RequestMapping(value = {"/reservation"}, method = RequestMethod.GET)
+    @GetMapping ("/reservation")
     public String reservation(Model model) {
         model.addAttribute("reservation", new Reservation());
         return "reservation";
     }
 
     //Den indtastede information til reservationen gemmes og bliver gemt i DB.
-    @PostMapping("reservation")
+    @PostMapping("/reservation")
     public String createReservation(@ModelAttribute Reservation reservation){
         reserRepo.create(reservation);
         return "redirect:/";
     }
 
     //Siden hvor medarbejdere kan skabes
-    @RequestMapping(value = {"/employeecreate"}, method = RequestMethod.GET)
+    // @RequestMapping(value = {"/employeecreate"}, method = RequestMethod.GET)
+    @GetMapping ("/employeecreate")
     public String employee(Model model) {
         model.addAttribute("employee", new Employee());
         return "employeecreate";
@@ -224,9 +233,10 @@ public class HomeController {
 
 
     //Den indtastede information til medarbejderen gemmes og bliver gemt i DB.
-    @PostMapping("employee")
+    @PostMapping("/employeecreate")
     public String createEmployee(@ModelAttribute Employee employee, Model model){
         employRepo.createEmployee(employee);
+
         employees = employRepo.readAll();
         model.addAttribute("e", employees);
         return "adminemployee";
@@ -234,7 +244,7 @@ public class HomeController {
 
     //I denne metode kan man slette en bestemt medarbejder baseret på id
     @GetMapping("/employeedelete")
-    public String deleteEmployee(@RequestParam("id") int id, Model model){
+    public String deleteEmployee(@ModelAttribute("id") int id, Model model){
         Employee e = employRepo.readSpecificEmployee(id);
         model.addAttribute("employee", e);
         return "employeedelete";
@@ -250,14 +260,16 @@ public class HomeController {
     }
 
     //En anderledes login metode. Tjekker for et matchene tlf nr i DB.
-    @RequestMapping(value = {"/phonelogin"}, method = RequestMethod.GET)
+    //@RequestMapping(value = {"/phonelogin"}, method = RequestMethod.GET)
+    @GetMapping ("/phonelogin")
     public String phonelogin(Model model) {
         model.addAttribute("res", new Reservation());
         return "phonelogin";
     }
 
     //Hvis tlf nr passer i DB vises de aktive reservationer der matcher tlf nr.
-    @RequestMapping(value = "/phonelogin", method = RequestMethod.POST)
+    // @RequestMapping(value = "/phonelogin", method = RequestMethod.POST)
+    @PostMapping("/phonelogin")
     public String phonelogin(@ModelAttribute Reservation r, Model model) {
         if (reserRepo.login(r.getPhone()) != null) {
             Reservation ress = reserRepo.login(r.getPhone());
@@ -271,14 +283,14 @@ public class HomeController {
 
     //Slet en reservation baseret på id. Både kunder og ansatte har denne funktion.
     @GetMapping("/reservationdelete")
-    public String deleteReservation(@RequestParam("id") int id, Model model){
+    public String deleteReservation(@ModelAttribute("id") int id, Model model){
         Reservation r = reserRepo.readSpecific(id);
         model.addAttribute("reservation", r);
         return "reservationdelete";
     }
 
     //Reservationen bliver slettet
-    @PostMapping("reservationdelete")
+    @PostMapping("/reservationdelete")
     public String reservationDelete(@ModelAttribute Reservation reservation){
         reserRepo.delete(reservation.getId());
         return "/index";

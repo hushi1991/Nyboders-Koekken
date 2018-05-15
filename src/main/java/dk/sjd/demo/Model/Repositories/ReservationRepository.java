@@ -31,6 +31,8 @@ public class ReservationRepository implements IReservationRepository {
         return reservation;
     }
 
+
+
     @Override
     public ArrayList<Reservation> readAllPhone(String phone) {
         SqlRowSet sqlRowSet = jdbc.queryForRowSet("SELECT * FROM reservations WHERE phone =" + phone + "");
@@ -58,9 +60,9 @@ public class ReservationRepository implements IReservationRepository {
 
     @Override
 // opdeles af plus eller komma?
-    public void create(Reservation reservation){
+    public void create(Reservation reservation)
+    {
         jdbc.update("INSERT INTO reservations (name, phone, guest, date, time, request) VALUES('" + reservation.getName() +"', '"+ reservation.getPhone() +"', '"+ reservation.getGuest() +"', '"+ reservation.getDate() +"', '"+ reservation.getTime() +"', '"+ reservation.getRequest() +"')");
-        // jdbc.update("INSERT INTO reservation(name,phone,guest,date,time,request) VALUES ('" + reservation.getName() + "') + ('" + reservation.getPhone() + "') + ('" + reservation.getGuest() + "') + ('" + reservation.getDate() + "') + ('" + reservation.getTime() + "') + ('" + reservation.getRequest() + "') ");
     }
 
     @Override

@@ -32,13 +32,17 @@
             <td th:text="${shift.shiftEnd}"/>
             <td th:text="${shift.hours}"/>
         <td>
-            <a th:href="@{/shiftexchange(id=${shift.id})}" class="btn" id="">Byt Vagt</a>
-            <a th:href="@{/shifttime(id=${shift.id})}" class="btn" id="">Indtast Tid</a>
+            <a th:href="@{/shiftexchange(id=${shift.id})}" class="btn">Byt Vagt</a>
+            <a th:href="@{/shifttime(id=${shift.id})}" class="btn">Indtast Tid</a>
         </td>
 
     </tr>
 </table>
-<a href="/login" class="btn" id="blue">Tilbage</a>
+
+<div align="center">
+    <a href="/login" class="btn" id="blue">Tilbage</a>
+</div>
+
 
 </body>
 </html>

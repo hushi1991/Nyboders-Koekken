@@ -15,7 +15,8 @@
 
 <h1>Opret Medarbejder</h1>
 
-<form th:action="@{/employee}" method="post" th:object="${employee}">
+<form th:action="@{/employeecreate}" method="post" th:object="${employee}">
+    <!-- th:object viser hvilken type object vi binder den indtastede data til -->
 
     <table align="center">
         <tr>
@@ -32,5 +33,6 @@
         </tr>
     </table>
 </form>
+
 </body>
 </html>

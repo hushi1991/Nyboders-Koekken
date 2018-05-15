@@ -32,6 +32,7 @@
             <td>
                 <input type="text" th:field="*{id}" th:text="${id}" readonly="readonly" />
             </td>
+
             <td>
                 <select th:field="${shift.name}">
                     <option value="">Vælg Medarbejder</option>
@@ -40,6 +41,8 @@
                             th:text="${shift.name}"></option>
                 </select>
             </td>
+
+
             <td>
                 <input type="date" th:field="*{date}" readonly="readonly" />
             </td>
